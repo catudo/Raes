@@ -1,9 +1,9 @@
 dataSource {
    pooled = true
 	driverClassName = "com.mysql.jdbc.Driver"
-	username = "grails"
-	password = "grails"
-	url = "jdbc:mysql://localhost/chukanboard"
+	username = "root"
+	password = "root"
+	
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -14,8 +14,8 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-            url = "jdbc:hsqldb:mem:devDB"
+            dbCreate = "update" // one of 'create', 'create-drop','update'
+			url = "jdbc:mysql://localhost/rae"
         }
     }
     test {

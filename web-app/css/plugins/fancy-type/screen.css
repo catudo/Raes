@@ -1,4 +1,4 @@
-/* --------------------------------------------------------------
+﻿/* --------------------------------------------------------------
 
    fancy-type.css
    * Lots of pretty advanced classes for manipulating text.
@@ -58,7 +58,7 @@ p.incr, .incr p {
 
 
 /* Surround uppercase words and abbreviations with this class.
-   Based on work by Jørgen Arnor Gårdsø Lom [http://twistedintellect.com/] */
+   Based on work by JÃ¸rgen Arnor GÃ¥rdsÃ¸ Lom [http://twistedintellect.com/] */
 
 .caps {
   font-variant: small-caps;
@@ -68,4 +68,6 @@ p.incr, .incr p {
   line-height:1%;
   font-weight:bold;
   padding:0 2px;
+}
+.logo_container {
 }
