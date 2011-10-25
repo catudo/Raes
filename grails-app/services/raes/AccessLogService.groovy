@@ -4,11 +4,11 @@ class AccessLogService {
 
     static transactional = false
 
-    def createAccessLog(def userId, controller) {
+    def createAccessLog(def userId, def generalController) {
 		def user = User.get(userId)
-		def accessLog = AccessLog.findByUserAndGeneralController(user, controller)
+		def accessLog = AccessLog.findByUserAndGeneralController(user, generalController)
 		if(accessLog){
-			accessLog = new AccessLog(user:user, controller)
+			accessLog = new AccessLog(user:user, generalController)
 			accessLog.save(flush:true)
 		}
 		

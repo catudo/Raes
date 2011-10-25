@@ -38,12 +38,12 @@ class UserController {
 		def role = Role.get(params.role)
 		params.remove("role")
 		
+		def userInstance = User.findBy(params.userId)
+		params.remove("userId")
 		
 		
-		def userInstance = User.findBy(params.id)
-		
-		def(userInstance)
-		 userInstance = new User(params)
+		if(userInstance)
+		def userBeforeUpdate = userInstance
         
 		if(params.passwd.equals("") || !params.passwd){
 			params.passwd =userInstance.passwd ;
@@ -51,12 +51,15 @@ class UserController {
 			params.passwd = springSecurityService.encodePassword(params.passwd);
 		}
 		
+		if(userInstance)
+		userInstance = new User(params)
+		
 		
 		if (userInstance.save(flush: true)) {
 			def userRole = UserRole.findByUserAndRole(userInstance,role) 
 			if(userRole)
 			UserRole.create (userInstance, role)
-			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),"User",domainId:userInstance.id,AfterUpdateAttribute:params)
+			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),"User",domainId:userInstance.id,beforeUpdateAttribute:userBeforeUpdate?.encodeAsJSON(),AfterUpdateAttribute:userInstance.encodeAsJSON())
 			render userInstance as JSON
         }
         

@@ -11,33 +11,39 @@
 	  	<script type="text/javascript" src="${resource(dir:'js',file:'raes.general.js')}"></script>
 
 		<link href="${resource(dir:'js/jquery-ui/css/smoothness',file:'jquery-ui-1.8.11.custom.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css/print.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css',file:'print.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css',file:'screen.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/plugins/buttons',file:'screen.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/plugins/rtl',file:'screen.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/plugins/fancy-type',file:'screen.css')}" rel="stylesheet" type="text/css" />
 		<g:layoutHead />	
 	</head>
 <body>
-	<div id="userInfo" class="column sort ui-selectee span-4 ui-ClickSelectee" style="opacity: 1; -moz-user-select: none;">
+	<div class="container showgrid">
+	<div id="userInfo" class="span-4">
+	${user.names}
 	</div>
-	<div id="epsilon" class="column ui-selectee sort span-12 ui-ClickSelectee" style="opacity: 1; display: block; position: relative; -moz-user-select: none;">
+	<div id="epsilon" class="span-12">
 	</div>
-	<div id="logo" class="column ui-selectee sort span-8 last ui-ClickSelectee" style="display: block; position: relative; opacity: 1; -moz-user-select: none;">
-	<img src="${resource(dir:'images',file:'books.png')}"  border="0" /></a>
-	</div>
-	
-	<div id="userTab" class="column ui-selectee sort span-3 ui-ClickSelectee" style="display: block; position: relative; -moz-user-select: none; right: 0px; top: 0px; height: 18px;">
-	</div>
-	<div id="adminTab" class="column ui-selectee sort span-3 ui-ClickSelectee" style="display: block; position: relative; -moz-user-select: none;">
-	</div>
-	<div id="queryTab" class="column ui-selectee sort span-3 last ui-ClickSelectee" style="-moz-user-select: none; display: block; position: relative;">
+	<div id="logo" class="span-8">
+	<img  class ="push-0" src="${resource(dir:'images',file:'books.jpg')}" height="100" width="150"  border="0" /></a>
 	</div>
 	
-    <div id="main" class="column sort ui-selectee span-24 ui-ClickSelectee" style="opacity: 1; -moz-user-select: none;">
+	<div id="userTab" class="span-3">
+	</div>
+	<div id="adminTab" class="span-3" >
+	</div>
+	<div id="queryTab" class= "span-3 last">
+	</div>
+	
+    <div id="main" class="span-24" >
 	<g:layoutBody />	
 	</div>
-	<div id="footer" class="column ui-selectee sort span-24 ui-selected" style="opacity: 1; -moz-user-select: none; display: block; position: relative; right: 0px; top: 0px;">
-		
+	<div id="footer" class="span-24 prepend-12 append-5 last">
+ 	asdasdasdasdasdasdasd
 	</div>
 	
 	</div>
-	
+	</div>
 </body>
 </html>

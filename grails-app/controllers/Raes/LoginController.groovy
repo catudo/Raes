@@ -154,4 +154,5 @@ class LoginController {
 					redirect action: auth, params: params
 				}
 			}
+			
 }

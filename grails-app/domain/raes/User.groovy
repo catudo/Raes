@@ -5,7 +5,7 @@ class User {
 	
 
 	String username
-	String password
+	String passwd
 	String names
 	String lastName 
 	String email
@@ -16,11 +16,11 @@ class User {
 
 	static constraints = {
 		username blank: false, unique: true
-		password blank: false
+		passwd blank: false
 	}
 
 	static mapping = {
-		password column: '`password`'
+		passwd column: '`password`'
 	}
 
 	Set<Role> getAuthorities() {

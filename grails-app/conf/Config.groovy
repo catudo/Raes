@@ -49,7 +49,7 @@ grails.logging.jul.usebridge = true
 grails.spring.bean.packages = []
 
 // request parameters to mask when logging exceptions
-grails.exceptionresolver.params.exclude = ['password']
+grails.exceptionresolver.params.exclude = ['passwd']
 
 // set per-environment serverURL stem for creating absolute links
 environments {
@@ -93,3 +93,9 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'raes.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'raes.UserRole'
 grails.plugins.springsecurity.authority.className = 'raes.Role'
+grails.plugins.springsecurity.defaultAdminUrl = '/home/admin'
+grails.plugins.springsecurity.defaultUserUrl = '/home/index'
+grails.plugins.springsecurity.userLookup.passwordPropertyName='passwd'
+grails.plugins.springsecurity.successHandler.defaultTargetUrl='/login/route'
+
+
