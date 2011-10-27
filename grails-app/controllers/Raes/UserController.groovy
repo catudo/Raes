@@ -19,11 +19,12 @@ class UserController {
 	def accessLogService
 	def index = {
 		def sessionUser = springSecurityService.getCurrentUser()?.id;
+		def server = CH.config.grails.serverURL
 		if(sessionUser ==null)
 			redirect(url:CH.config.grails.serverURL+"/login/auth")
 		else{
 			def accessLog =  accessLogService.createAccessLog(sessionUser.id, "/user/index")
-			[accessLog:accessLog]
+			[accessLog:accessLog,server:server]
 		}
 	}
 
