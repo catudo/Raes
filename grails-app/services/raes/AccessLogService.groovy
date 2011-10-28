@@ -7,19 +7,18 @@ class AccessLogService {
     def createAccessLog(def userId, def generalController) {
 		def user = User.get(userId)
 		def accessLog = AccessLog.findByUserAndGeneralController(user, generalController)
-		if(accessLog){
-			accessLog = new AccessLog(user:user, generalController)
+		
+		if(!accessLog){
+			accessLog = new AccessLog(user:user, generalController:generalController)
 			accessLog.save(flush:true)
+			
 		}
 		
 		return accessLog
     }
 	
 	
-	def createEvent(){
-		
-	}
-	
+
 	
 	
 }

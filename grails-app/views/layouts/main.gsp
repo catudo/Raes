@@ -17,10 +17,15 @@
 		<link href="${resource(dir:'css/plugins/rtl',file:'screen.css')}" rel="stylesheet" type="text/css" />
 		<link href="${resource(dir:'css/plugins/fancy-type',file:'screen.css')}" rel="stylesheet" type="text/css" />
 		<link href="${resource(dir:'css',file:'raesCss.css')}" rel="stylesheet" type="text/css" />
+		<g:javascript src="dataTables/media/js/jquery.dataTables.js" />
+		<link href="${resource(dir:'js/dataTables/media/css/',file:'demo_table.css')}" rel="stylesheet" type="text/css" />
+		
+		
 		<g:layoutHead />	
 	</head>
 <body>
-	
+<div class="content">
+		<g:hiddenField name="accessLog" value="${accessLog.id}" />
 		<div id="wrapper">
 			<div id="header">
 				<div id="logo">
@@ -32,10 +37,10 @@
 			<sec:ifAllGranted roles="ROLE_ADMIN">
 			<div class="contentRaes">
 			<ul id="menu">
-					<li><a><strong>Usuarios</strong></a></li>
-					<li><a><strong>Administraci&oacute;n de la informaci&oacute;n</strong></a></li>
-					<li><a><strong>Consultas</strong></a></li>					
-				</ul>
+					<li class="linkPath" link="${server}/user/index"><a><strong>Usuarios</strong></a></li>
+					<li class="linkPath" link="${server}/Rae/index"><a><strong>Administraci&oacute;n de la informaci&oacute;n</strong></a></li>
+					<li class="linkPath" link="${server}/Rae/queries"><a><strong>Consultas</strong></a></li>					
+			</ul>
 			</div>
 			</sec:ifAllGranted>
 			<div id="main">
@@ -46,6 +51,7 @@
 			<div id="footer">
 				<p>Copyright &copy; 2010 </p>
 			</div>
-		</div>
+</div>
+	
 </body>
 </html>

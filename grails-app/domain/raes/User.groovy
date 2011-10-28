@@ -18,7 +18,11 @@ class User {
 		username blank: false, unique: true
 		passwd blank: false
 	}
-
+	
+	def beforeInsert = {
+			enabled = true
+		}
+	
 	static mapping = {
 		passwd column: '`password`'
 	}

@@ -23,14 +23,45 @@ class UserController {
 		if(sessionUser ==null)
 			redirect(url:CH.config.grails.serverURL+"/login/auth")
 		else{
-			def accessLog =  accessLogService.createAccessLog(sessionUser.id, "/user/index")
+			def accessLog =  accessLogService.createAccessLog(sessionUser, "/user/index")
 			[accessLog:accessLog,server:server]
 		}
 	}
 
     def list = {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [userInstanceList: User.list(params), userInstanceTotal: User.count()]
+        def userlist = User.list()
+		
+		List finalData = new ArrayList ();
+		def columns = [
+		 [ "sTitle": "Nombres" ,"sWidth": "1800px"],
+		 [ "sTitle": "Apellidos" ,"sWidth": "180px"],
+		 [ "sTitle": "email" ,"sWidth": "180px"],
+		 [ "sTitle": "Usuario" ,"sWidth": "180px"],
+		 [ "sTitle": "Estado" ,"sWidth": "180px"],
+		 [ "sTitle": "" ,"sWidth": "180px"],
+		 [ "sTitle": "" ,"sWidth": "180px"]
+		];
+		
+		
+		userlist.each{user->
+			def row=[]
+			row.add(user.names)
+			row.add(user.lastName)
+			row.add(user.email)
+			row.add(user.username)
+			row.add((user.enabled)?"Habilitado":"Desahabilitado")
+			row.add("<a>Editar<a>")
+			row.add("<a>Cambiar Estado<a>")
+			finalData.add(row)
+			
+		}
+		
+		HashMap json_response= new HashMap();
+		json_response.put("data",finalData);
+		json_response.put("columns",columns);
+		
+		render json_response as JSON
+		
     }
 
     def save = {
@@ -38,32 +69,36 @@ class UserController {
 		params.remove("accessLog")
 		def role = Role.get(params.role)
 		params.remove("role")
-		
-		def userInstance = User.findBy(params.userId)
+		println params
+		def userInstance = User.get(params.userId)
 		params.remove("userId")
 		
-		
-		if(userInstance)
-		def userBeforeUpdate = userInstance
-        
+		def userBeforeUpdate
+		if(userInstance){
+		userBeforeUpdate = userInstance
+		UserRole.remove userInstance, userInstance.role
+		}
 		if(params.passwd.equals("") || !params.passwd){
 			params.passwd =userInstance.passwd ;
 		}else {
 			params.passwd = springSecurityService.encodePassword(params.passwd);
 		}
 		
-		if(userInstance)
+		if(!userInstance){
 		userInstance = new User(params)
 		
+		}
 		
 		if (userInstance.save(flush: true)) {
 			def userRole = UserRole.findByUserAndRole(userInstance,role) 
 			if(userRole)
 			UserRole.create (userInstance, role)
-			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),"User",domainId:userInstance.id,beforeUpdateAttribute:userBeforeUpdate?.encodeAsJSON(),AfterUpdateAttribute:userInstance.encodeAsJSON())
-			render userInstance as JSON
+			def userJson = userBeforeUpdate?.encodeAsJSON()
+			
+			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),domainName:"User",domainId:userInstance.id,beforeUpdateAttribute:userJson,AfterUpdateAttribute:userInstance.encodeAsJSON())
+			event.save(flush:true)
         }
-        
+		render userInstance as JSON
     }
 
     def show = {
