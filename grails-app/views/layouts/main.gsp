@@ -2,56 +2,67 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-		<title><g:layoutTitle default="Raes" /></title>
+		<title>
+			<g:layoutTitle default="Raes" />
+		</title>
+		<script type="text/javascript" src="${resource(dir:'js/jquery.use',file:'jquery.js')}"></script>
+		<script src="${resource(dir:'js/jquery.use',file:'jquery.use.js')}"></script>
+		<script type="text/javascript" src="${resource(dir:'js/jquery-ui/js',file:'jquery-ui-1.8.11.custom.min.js')}"></script>
+		<script type="text/javascript" src="${resource(dir:'js/jquery.use',file:'jquery.tools.min.js')}"></script>
+		<script type="text/javascript" src="${resource(dir:'js',file:'raes.general.js')}"></script>
 		
-	  	<script type="text/javascript" src="${resource(dir:'js/jquery.use',file:'jquery.js')}"></script>
-	  	<script src="${resource(dir:'js/jquery.use',file:'jquery.use.js')}"></script>
-	  	<script type="text/javascript" src="${resource(dir:'js/jquery-ui/js',file:'jquery-ui-1.8.11.custom.min.js')}"></script>
-	  	<script type="text/javascript" src="${resource(dir:'js/jquery.use',file:'jquery.tools.min.js')}"></script>
-	  	<script type="text/javascript" src="${resource(dir:'js',file:'raes.general.js')}"></script>
-
 		<link href="${resource(dir:'js/jquery-ui/css/smoothness',file:'jquery-ui-1.8.11.custom.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css',file:'print.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css',file:'screen.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css/plugins/buttons',file:'screen.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css/plugins/rtl',file:'screen.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css/plugins/fancy-type',file:'screen.css')}" rel="stylesheet" type="text/css" />
-		<link href="${resource(dir:'css',file:'raesCss.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'960.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'grid.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'ie.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'ie6.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'nav.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'reset.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'text.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css/template/',file:'layout.css')}" rel="stylesheet" type="text/css" />
+		<link href="${resource(dir:'css',file:'backEnd.css')}" rel="stylesheet" type="text/css" />
+		
+		
 		<g:javascript src="dataTables/media/js/jquery.dataTables.js" />
-		<link href="${resource(dir:'js/dataTables/media/css/',file:'demo_table.css')}" rel="stylesheet" type="text/css" />
-		
-		
-		<g:layoutHead />	
+		<g:layoutHead />
 	</head>
-<body>
-<div class="content">
-		<g:hiddenField name="accessLog" value="${accessLog.id}" />
-		<div id="wrapper">
-			<div id="header">
-				<div id="logo">
-					 <h1><a >Raes<span>&amp;</span>Attorney</a></h1>
-				</div>
-				<div class="clr"></div>
+	<body>
+		<div class="container_16">
+			<div class="grid_16">
+				<h1 id="branding"><a href="../">Raes</a></h1>
 			</div>
-			
+			<div class="clear"></div>
 			<sec:ifAllGranted roles="ROLE_ADMIN">
-			<div class="contentRaes">
-			<ul id="menu">
-					<li class="linkPath" link="${server}/user/index"><a><strong>Usuarios</strong></a></li>
-					<li class="linkPath" link="${server}/Rae/index"><a><strong>Administraci&oacute;n de la informaci&oacute;n</strong></a></li>
-					<li class="linkPath" link="${server}/Rae/queries"><a><strong>Consultas</strong></a></li>					
-			</ul>
-			</div>
+				<div class="grid_16">
+					<ul class="nav main">
+						<li >
+							<a  href="#" class="linkPath" link="${server}/user/index" >Usuarios</a>
+						</li>
+						<li >
+							<a href="#" class="linkPath" link="${server}/rae/index">Administraci&oacute;n de la informaci&oacute;n</a>
+						</li>
+						<li >
+							<a href="#" class="linkPath" link="${server}/queries/index">Consultas</a>
+						</li>
+						<li class="secondary" >
+							<a href="#" >${user.names}</a>
+						</li>
+					</ul>
+				</div>
 			</sec:ifAllGranted>
-			<div id="main">
-			<g:layoutBody />
+			<div class="content grid_16">
+				<g:hiddenField name="accessLog" value="${accessLog.id}" />
+				<g:layoutBody />
+				<div class="clear"></div>
+				<div class="grid_16" id="site_info">
+					<div class="box">
+						<p>
+							Copyright &copy; 2011
+						</p>
+					</div>
+				</div>
+				<div class="clear"></div>
 			</div>
-				<div class="clr"></div>
-			</div>
-			<div id="footer">
-				<p>Copyright &copy; 2010 </p>
-			</div>
-</div>
-	
-</body>
+		</div>
+	</body>
 </html>

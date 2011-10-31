@@ -24,7 +24,7 @@ class UserController {
 			redirect(url:CH.config.grails.serverURL+"/login/auth")
 		else{
 			def accessLog =  accessLogService.createAccessLog(sessionUser, "/user/index")
-			[accessLog:accessLog,server:server]
+			[accessLog:accessLog,server:server, user:User.get(sessionUser)]
 		}
 	}
 
@@ -33,13 +33,13 @@ class UserController {
 		
 		List finalData = new ArrayList ();
 		def columns = [
-		 [ "sTitle": "Nombres" ,"sWidth": "1800px"],
-		 [ "sTitle": "Apellidos" ,"sWidth": "180px"],
-		 [ "sTitle": "email" ,"sWidth": "180px"],
-		 [ "sTitle": "Usuario" ,"sWidth": "180px"],
-		 [ "sTitle": "Estado" ,"sWidth": "180px"],
-		 [ "sTitle": "" ,"sWidth": "180px"],
-		 [ "sTitle": "" ,"sWidth": "180px"]
+		 [ "sTitle": "Nombres" ],
+		 [ "sTitle": "Apellidos" ],
+		 [ "sTitle": "email" ],
+		 [ "sTitle": "Usuario" ],
+		 [ "sTitle": "Estado"],
+		 [ "sTitle": "" ],
+		 [ "sTitle": "" ]
 		];
 		
 		
@@ -50,8 +50,8 @@ class UserController {
 			row.add(user.email)
 			row.add(user.username)
 			row.add((user.enabled)?"Habilitado":"Desahabilitado")
-			row.add("<a>Editar<a>")
-			row.add("<a>Cambiar Estado<a>")
+			row.add("<a class='editUser' userId="+user.id+">Editar<a>")
+			row.add("<a class='changeUser' userId="+user.id+">Cambiar Estado<a>")
 			finalData.add(row)
 			
 		}
@@ -71,6 +71,8 @@ class UserController {
 		params.remove("role")
 		println params
 		def userInstance = User.get(params.userId)
+		
+		if(params.userId.equals(""))
 		params.remove("userId")
 		
 		def userBeforeUpdate
@@ -90,37 +92,47 @@ class UserController {
 		}
 		
 		if (userInstance.save(flush: true)) {
-			def userRole = UserRole.findByUserAndRole(userInstance,role) 
-			if(userRole)
 			UserRole.create (userInstance, role)
 			def userJson = userBeforeUpdate?.encodeAsJSON()
 			
 			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),domainName:"User",domainId:userInstance.id,beforeUpdateAttribute:userJson,AfterUpdateAttribute:userInstance.encodeAsJSON())
 			event.save(flush:true)
         }
+		
+		 
+		
 		render userInstance as JSON
     }
 
     def show = {
-        def userInstance = User.get(params.id)
-        if (!userInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            [userInstance: userInstance]
-        }
+        def userInstance = User.get(params.userId)
+		
+		def properties =[
+			"username",
+			"names",
+			"lastName",
+			"email",]
+		
+		
+		def userHash=[:]
+		
+		properties.each{
+			userHash.putAt(it, userInstance.getAt(it))
+			
+		}
+		  
+		userHash.putAt("role", UserRole.findByUser(userInstance).role.id)
+		
+		render userHash as JSON 
+        
     }
 
-    def edit = {
-        def userInstance = User.get(params.id)
-        if (!userInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'user.label', default: 'User'), params.id])}"
-            redirect(action: "list")
-        }
-        else {
-            return [userInstance: userInstance]
-        }
+    def editStatus = {
+        def userInstance = User.get(params.userId)
+		userInstance.enabled = !(userInstance.enabled)
+		userInstance.save(flush:true)
+		render userInstance as JSON
+		
     }
 
     def update = {

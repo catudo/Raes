@@ -6,7 +6,8 @@ clickTabs()
 });
 
 function clickTabs(){
-	$("#menu").delegate(".linkPath", "click", function() {
+	$(".nav").delegate(".linkPath", "click", function(e) {
+		e.preventDefault()
 	var redirectLink = $(this).attr("link");
 		location.href = redirectLink;
 	

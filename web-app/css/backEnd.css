@@ -1,0 +1,121 @@
+@CHARSET "ISO-8859-1";
+
+table {
+  border-collapse: collapse;
+  border: none;
+  font: normal 11px helvetica, verdana, arial, sans-serif;
+  background-image: url(http://www.acuity.com.br/extern/icant.co.uk/bg_acuity.gif); 
+  background-repeat: repeat;
+
+border-spacing: 1px;
+  }
+caption {
+  text-align: left;
+  font: normal 11px helvetica, verdana, arial,  sans-serif;
+  background: transparent;
+  }
+td, th {
+  border: none;
+  padding: .8em;
+  color: #6E6E6E;
+  }
+thead th, tfoot th {
+  font: bold 10px helvetica, verdana, arial, sans-serif;
+  border: none;
+  text-align: left;
+  background: #000000;
+  color: #00FF0C;
+  padding-top:4px;
+  }
+tbody td a {
+  background: transparent;
+  text-decoration: none;
+  color: #9F9F9F;
+  }
+tbody td a:hover {
+  background: transparent;
+  color: #00FF0C;
+  }
+tbody th a {
+  font: bold 11px helvetica, verdana, arial, sans-serif;
+  background: transparent;
+  text-decoration: none;
+  font-weight:normal;
+  color: #9F9F9F;
+  }
+  
+  
+tbody td+td+td+td a {
+    padding-right: 14px;
+   
+    }
+    tbody td+td+td+td a:hover {
+        padding-right: 14px;
+   
+    }
+tbody th a:hover {
+  background: transparent;
+  color: #00FF0C;
+  }
+tbody th, tbody td {
+  vertical-align: top;
+  text-align: left;
+  }
+
+.odd {
+  background: #000000;
+  }
+tbody tr:hover {
+  background: #0E0E0E;
+  }
+tbody tr:hover th,
+tbody tr.odd:hover th {
+  background: #0E0E0E;
+  }
+  
+th .DataTables_sort_wrapper {
+
+color:#FFFFFF
+}
+
+label.error-label {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic
+}
+
+.button {
+    padding: 5px 10px;
+    display: inline;
+    background: #777 url("/images/button.png") repeat-x bottom;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-shadow: 1px 1px #666;
+    }
+.button:hover {
+    background-position: 0 -48px;
+    }
+.button:active {
+    background-position: 0 top;
+    position: relative;
+    top: 1px;
+    padding: 6px 10px 4px;
+    }
+.button.red { background-color: #e50000; }
+.button.purple { background-color: #9400bf; }
+.button.green { background-color: #58aa00; }
+.button.orange { background-color: #ff9c00; }
+.button.blue { background-color: #2c6da0; }
+.button.black { background-color: #333; }
+.button.white { background-color: #fff; color: #000; text-shadow: 1px 1px #fff; }
+.button.small { font-size: 75%; padding: 3px 7px; }
+.button.small:hover { background-position: 0 -50px; }
+.button.small:active { padding: 4px 7px 2px; background-position: 0 top; }
+.button.large { font-size: 125%; padding: 7px 12px; }
+.button.large:hover { background-position: 0 -35px; }
+.button.large:active { padding: 8px 12px 6px; background-position: 0 top; }

@@ -7,10 +7,16 @@ class Event {
 	String domainName
 	long domainId
 	String beforeUpdateAttribute
-	String AfterUpdateAttribute
+	String afterUpdateAttribute
 	static mapping = {
 		accessLog fetch:'join'
-	}
+		beforeUpdateAttribute type: 'text'
+		afterUpdateAttribute type: 'text'
+		
+		
+		
+	}		
+	
 
 	static constraints = {
 		beforeUpdateAttribute nullable:true
