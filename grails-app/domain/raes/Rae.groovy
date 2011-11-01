@@ -10,10 +10,11 @@ class Rae {
 	String name
 	String analyst
 	String keyWords
-	static belongsTo =[unversity:University]
-	static hasMany = [categories:Category,authors:Author]
-	
+	static belongsTo =[university:University,category:Category]
+	static hasMany = [authors:Author]
+	//categories:Category
     static constraints = {
+		authors nullable:true
     }
 	
 	static mapping = {

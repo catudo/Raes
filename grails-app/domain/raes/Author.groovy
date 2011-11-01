@@ -9,4 +9,11 @@ class Author {
 	static belongsTo = Rae
 	static constraints = {
     }
+	
+	
+	
+	String toString(){
+		return name
+	}
+	
 }

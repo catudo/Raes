@@ -3,6 +3,8 @@ $(document).ready(function(){
 	saveProperties()
 	displayDivs()
 	addAuthor()
+	listRaes()
+	deleteAuthor()
 
 });
 
@@ -35,6 +37,12 @@ function saveProperties(){
 		case "categoryForm":
 			controller = "saveCategory"
 			break;
+			
+		case "raeForm":	
+			controller = "saveRae"
+		break;
+				
+			
 		
 		}
 		
@@ -45,7 +53,12 @@ function saveProperties(){
 			success : function(response) {
 				
 				clear("#"+formId)
+				
+				
+				if(controller!="saveRae")
 				window.location.reload(true);
+				else
+				listRaes()
 
 
 			}
@@ -83,6 +96,63 @@ function displayDivs(){
 }
 
 
+function listRaes(){
+	$.ajax({
+		type : "POST",
+		url : webroot + "/rae/listRaes",
+		
+		success : function(response) {
+			buildTable(response)	
+
+		}
+	});
+}
+
+
+function buildTable(response) {
+
+	var data = response.data;
+	var col = response.columns;
+
+	$('#raeDiv').html('<table id="rae_table" ></table>');
+	data_table = $('#rae_table').dataTable({
+		"aaData" : data,
+		"aoColumns" : col,
+		"bJQueryUI" : true,
+		//"bAutoWidth": true,
+		"aaSorting" : [[1, "asc"]],
+		//"sScrollY": "466px",
+		"oLanguage" : {
+			"sProcessing" : "Procesando",
+			"sLengthMenu" : "Cantidad",
+			"sZeroRecords" : "No hay resultados",
+			"sInfo" : "Informacion",
+			"sInfoEmpty" : "Vacio",
+			"sInfoFiltered" : "Filtro",
+			"sInfoPostFix" : "post",
+			"sSearch" : "Busqueda",
+			"sUrl" : "",
+			"oPaginate" : {
+				"sFirst" : "Primero",
+				"sPrevious" : "Anterior",
+				"sNext" : "Siguiente",
+				"sLast" : "Ultimo"
+			}
+
+		},
+		"sPaginationType" : "full_numbers",
+		//sDom: 'HrtlpF',
+		sDom : 'HIrtF',
+		"iDisplayLength" : -1,
+		"aLengthMenu" : [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
+		"fnInitComplete" : function() {
+
+		}
+	});
+
+}
+
+
 
 function addAuthor(){
 	$(".add").delegate(".evt-addAuthor", "click", function(e) {
@@ -91,4 +161,23 @@ function addAuthor(){
 	
 	
 	})
+}
+
+
+function deleteAuthor(){
+	$("#raeDiv").delegate(".deleteRae", "click", function(e) {
+		var raeID = $(this).attr("raeId")
+		var params ={}
+		params['raeId'] = raeID
+		
+		$.ajax({
+			type : "POST",
+			url : webroot + "/rae/deleteRae",
+			data : params,
+			success : function(response) {
+				listRaes()
+			}
+		})
+	})
+
 }

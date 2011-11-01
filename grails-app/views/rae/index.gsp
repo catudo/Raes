@@ -1,4 +1,5 @@
 <%@page import="raes.University"%>
+<%@page import="raes.Category"%>
 <g:javascript src="raes.rae.js" />
 
 <ul class="nav main">
@@ -63,6 +64,7 @@
 						Contenido
 					</legend>
 					
+					<g:hiddenField name="raeId"/>
 					<p>
 						<label>Nombre</label>
 						<g:textField class="text" name="name"/>
@@ -92,12 +94,17 @@
 					</p>
 					<p>
 						<label>Palabras Claves</label>
-						<g:textField class="text" name="keyWord"/>
+						<g:textField class="text" name="keyWords"/>
 						
 					</p>
 					<p>
 						<label>Universidad</label>
-						<g:select name="university" from="${University.list()}"/>
+						<g:select name="university" optionKey="id" from="${University.list()}"/>
+					</p>
+					
+					<p>
+						<label>Categoria</label>
+						<g:select name="category"  optionKey="id" from="${Category.list()}"/>
 					</p>
 					
 					<p>
@@ -114,7 +121,7 @@
 						<label>Año</label>
 						<g:datePicker name="year" value="${new Date()}" precision="year" years="${1900..2100}"/>
 					</p>
-					<input class="evt-properties" type="submit" value="Almacenar" class="confirm button">
+					<input  class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>
 			</g:form>
 		</div>
@@ -127,6 +134,8 @@
 	<h2><a id="toggle-search" href="#" >Lista de Raes</a></h2>
 	
 	<div id ="raeDiv">
+	
+	
 	
 	</div>
 	
