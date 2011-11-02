@@ -96,6 +96,7 @@ class RaeController {
 
 			if(author==null){
 				author = new Author(name:authorName)
+				if(!authorName.equals(""))
 				author.save(flush:true)
 			}
 
@@ -109,9 +110,9 @@ class RaeController {
 		if(raeId.equals("")){
 			rae = new Rae(properties)
 		}else{
-
-			properties.each{key->
-				def value = properties[key]
+			rae = Rae.get(raeId)
+			properties.each{key, value ->
+				
 				rae.putAt(key, value)
 				
 			}
@@ -183,9 +184,84 @@ class RaeController {
 		def rae = Rae.get(params.raeId)
 		rae.authors = null
 		rae.save(flush:true)
-		
 		rae.delete(flush:true)
 		render rae as JSON
+		
+	}
+	
+	
+	def showRae={
+		def rae = Rae.get(params.raeId)
+		
+		def properties =[
+			"name",
+			"year",
+			"summary",
+			"methodology",
+			"result",
+			"topographicalNumber",
+			"city",
+			"analyst",
+			"keyWords"
+		]
+		
+		
+		def raeObject =[:]
+		
+		properties.each{property->
+			raeObject.putAt(property, rae.getAt(property))
+		}
+		
+		raeObject.putAt("university", rae.university.name)
+		
+		
+		def authors = rae.authors
+		
+		def authorsNameList =[]
+		
+		authors.each{author->
+			authorsNameList.add(author.name)
+			
+		}
+		
+		raeObject.putAt("author", authorsNameList)
+		
+		
+		render raeObject as JSON
+		
+	}
+	
+	def generatePdf={
+		def rae = Rae.get(params.raeId)
+		def properties =[
+			"name",
+			"year",
+			"methodology",
+			"result",
+			"topographicalNumber",
+			"city",
+			"analyst",
+			"keyWords",
+			"summary",
+		]
+		params._file = "rae.jrxml"
+		
+		params._format="PDF"
+		
+		def report = []
+		
+		def raeHash = [:] 
+		
+		properties.each{property->
+			raeHash.putAt(property, rae.getAt(property))
+		}
+		
+		raeHash.putAt("authors", rae.authors.join(","))
+		raeHash.putAt("university", rae.university.name)
+		
+		report.add(raeHash)
+		
+		chain(controller:'jasper',action:'index',model:[data:report],params:params)
 		
 	}
 }

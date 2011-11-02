@@ -5,6 +5,8 @@ $(document).ready(function(){
 	addAuthor()
 	listRaes()
 	deleteAuthor()
+	showRae()
+	generatePdf()
 
 });
 
@@ -180,4 +182,76 @@ function deleteAuthor(){
 		})
 	})
 
+}
+
+function showRae(){
+	$("#listRaeDiv").delegate('.editRae', "click", function(){
+		var raeId = $(this).attr("raeId")
+		var params = {}
+		params["raeId"] = raeId
+		$.ajax({
+			type: "POST",
+			url: webroot + "/rae/showRae",
+			data: params,
+			success: function(response){
+				//clear("#raeForm")
+				$("#raeId").val(raeId)
+				for (var field in response) {
+					if (field != "author") {
+						
+						if(field !="name"){
+						var tag = $("#"+field)
+						
+						tag.val(response[field])
+						
+						}else{
+						
+						$("#raeForm").find('input[name="name"]').val(response[field])
+							
+						}
+					}
+					else {
+						var authors = response[field]
+						
+						for (var i = 0; i < authors.length; i++) {
+							if (i == 0) {
+								$("#author").val(authors[i])
+							}
+							else {
+								$(".evt-addAuthor").before('<p><input type="text" value="' + authors[i] + '" id="author" name="author" class="text"></p>')
+								
+							}
+						}
+						
+					}
+					
+					
+				}
+				$("#saveTab").click()
+				
+			}
+		});
+	});
+}
+
+
+function generatePdf(){
+	
+	$("#raeDiv").delegate(".printRae", "click", function(e) {
+		var raeID = $(this).attr("raeId")
+		var params ={}
+		params['raeId'] = raeID
+		
+		$.ajax({
+			type : "POST",
+			url : webroot + "/rae/generatePdf",
+			data : params,
+			success : function(response) {
+				
+				
+				
+			}
+		})
+	})
+	
 }

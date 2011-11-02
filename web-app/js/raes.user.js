@@ -187,7 +187,6 @@ function showUser() {
 	$("#userlist").delegate('.editUser', "click", function() {
 		var userId = $(this).attr("userId")
 		var params = {}
-		$("#userId").val(userId)
 		params["userId"] = userId
 		$.ajax({
 			type : "POST",
@@ -195,6 +194,7 @@ function showUser() {
 			data : params,
 			success : function(response) {
 				clear("#saveUser")
+				$("#userId").val(userId)
 				for(var field in response) {
 					$("#" + field).val(response[field])
 				}
