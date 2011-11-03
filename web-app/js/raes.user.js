@@ -45,6 +45,17 @@ function setUpForm() {
 
 				}
 			},
+			username : {
+				required : true,
+				success : function() {
+					if(validator.numberOfInvalids() > 0) {
+
+					} else {
+
+					}
+
+				}
+			},
 			lastName : {
 				required : true,
 				success : function() {
@@ -57,9 +68,16 @@ function setUpForm() {
 				}
 			},
 			passwd : {
-				required : {
-				depends:"#userId[value=]"
+				required :function(element) {
+					if($("#userId").val().length == 0) {
+					return true
+					}else{
+					$(element).val('')
+					
+					}
+										
 				},
+				
 				success : function() {
 					if(validator.numberOfInvalids() > 0) {
 

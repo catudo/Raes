@@ -165,7 +165,7 @@ class RaeController {
 			row.add(rae.category.name)
 			row.add(rae.authors.join(","))
 			row.add("<a class='editRae' raeId="+rae.id+">Editar<a>")
-			row.add("<a class='printRae' raeId="+rae.id+">Imprimir<a>")
+			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))
 			row.add("<a class='deleteRae' raeId="+rae.id+">Eliminar<a>")
 			finalData.add(row)
 			
@@ -233,6 +233,8 @@ class RaeController {
 	
 	def generatePdf={
 		def rae = Rae.get(params.raeId)
+		
+		
 		def properties =[
 			"name",
 			"year",
@@ -244,9 +246,8 @@ class RaeController {
 			"keyWords",
 			"summary",
 		]
-		params._file = "rae.jrxml"
 		
-		params._format="PDF"
+		
 		
 		def report = []
 		
@@ -255,9 +256,11 @@ class RaeController {
 		properties.each{property->
 			raeHash.putAt(property, rae.getAt(property))
 		}
-		
-		raeHash.putAt("authors", rae.authors.join(","))
+		def auth =  rae.authors.join(",")
+		raeHash.putAt("authors", auth)
+		raeHash.putAt("category", rae.category.name)
 		raeHash.putAt("university", rae.university.name)
+		
 		
 		report.add(raeHash)
 		

@@ -11,7 +11,6 @@ $(document).ready(function(){
 });
 
 
-
 function saveProperties(){
 	$(".add").delegate(".evt-properties", "click", function(e) {
 		
@@ -218,6 +217,7 @@ function showRae(){
 								$("#author").val(authors[i])
 							}
 							else {
+								if(i<authors.length)
 								$(".evt-addAuthor").before('<p><input type="text" value="' + authors[i] + '" id="author" name="author" class="text"></p>')
 								
 							}
@@ -238,20 +238,9 @@ function showRae(){
 function generatePdf(){
 	
 	$("#raeDiv").delegate(".printRae", "click", function(e) {
-		var raeID = $(this).attr("raeId")
-		var params ={}
-		params['raeId'] = raeID
+	
+		$(this).parent().submit()
 		
-		$.ajax({
-			type : "POST",
-			url : webroot + "/rae/generatePdf",
-			data : params,
-			success : function(response) {
-				
-				
-				
-			}
-		})
 	})
 	
 }
