@@ -154,7 +154,6 @@ function buildTable(response) {
 }
 
 
-
 function addAuthor(){
 	$(".add").delegate(".evt-addAuthor", "click", function(e) {
 		e.preventDefault()

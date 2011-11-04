@@ -17,6 +17,7 @@ class HomeController {
 		redirect(url:CH.config.grails.serverURL+"/login/auth")
 		else{
 			def accessLog =  accessLogService.createAccessLog(sessionUser, "/user/index")
+			
 			[accessLog:accessLog,user:User.get(sessionUser),server:server]
 		}
 		
