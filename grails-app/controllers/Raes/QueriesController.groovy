@@ -45,31 +45,40 @@ class QueriesController {
 		]
 		
 		
-		def sql ='''
-		select ras from Rae rae
-		where
-		(rae.names="'''+params.names+''' or rae.year = "'''+params.year+'''"
-        or rae.keyWords like"'''+ params.keyWords+'''"% '''
 
-	
+		def raes = Rae.createCriteria().list{
+
+			or{
+				if(params.university.isNumber()){
+					university{
+
+						eq('id',params.university.toLong())
+					}
+				}
+
+				eq('topographicalNumber',params.topographicalNumber)
+				if(params.year.isNumber())
+				eq('year', params.year.toInteger())
+				
+				like('keyWords',params.keyWord+"%")
+				eq('name', params.name)
+			}
+
+			join "University"
+		}
+
 		
 		
-		def raes = Rae.executeQuery(sql)
 		
 		
 		if(!(params.authors.equals(''))){
-			def author = Author.findByName(params.authors)
-			def authorsRae = Rae.findAllByAuthors(author)
-			raes.addAll(authorsRae)
+			def authors = Author.findByName(params.authors)
+			def raesAuthor = authors.raes
+			raes.addAll(raesAuthor)
 			
 		}
 		
-		if(!(params.university.equals(''))){
-			def university = University.get(params.university)
-			def universityRae = Rae.findAllByUniversity(university)
-			raes.addAll(universityRae)
-			
-		}
+		
 		
 		
 		
@@ -118,10 +127,10 @@ class QueriesController {
 		render json_response as JSON
 		
 		
-		
-		
-		
-		
+	}
+	
+	def generatePdf={
+		chain(controller:'Rae',action:'generatePdf',params:params)
 	}
 	
 }

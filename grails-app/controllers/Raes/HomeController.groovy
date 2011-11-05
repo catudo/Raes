@@ -7,7 +7,11 @@ class HomeController {
 	static layout='main'
 	def springSecurityService
 	def accessLogService	
-    def index = { }
+    def index = { 
+		
+		redirect(url:CH.config.grails.serverURL+"/queries/index")
+		
+	}
 	
 	def admin = { 
 	

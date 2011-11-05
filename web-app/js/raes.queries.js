@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	
+	listRaes()
 
 });
 
@@ -8,36 +8,24 @@ $(document).ready(function(){
 
 
 function listRaes(){
-	$("#userlist").delegate('.button', "click", function() {
-		
+	$("#divForm").delegate('.button', "click", function(event) {
+		event.preventDefault();
 		
 		
 		var params = $("#queryForm").serialize();
 		//params = params + "&accessLog=" + $("#accessLog").val()
-
-		$.ajax({
-			type : "POST",
-			url : webroot + "/user/save",
-			data : params,
-			success : function(message) {
-
-				clear(form)
-				listUsers()
-
-			}
-		});	
-	
 	
 	
 	$.ajax({
 		type : "POST",
 		url : webroot + "/queries/selectRaes",
-		
+		data : params,
 		success : function(response) {
 			buildTable(response)	
 
 		}
 	});
+})
 }
 
 

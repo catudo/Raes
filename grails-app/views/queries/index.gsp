@@ -4,7 +4,7 @@
 <div style="padding:0;" class="box grid_16">
 	<h2 style="margin:0"><a id="toggle-grid" style="background-position: 99.3% 50%; cursor: pointer;" href="#" class="visible">Parametros</a></h2>
 	
-	<div  class="block" style="margin: 0px;">
+	<div id="divForm"  class="block" style="margin: 0px;">
 						<g:form name="queryForm" action="">
 							<fieldset class="login">
 								<legend>Parametros de Consulta</legend>
@@ -37,7 +37,7 @@
 									
 									%>
 									
-									<g:select class="select" name="year"  value='${currentYear}'  from="${years}"  noSelection="${['null':'']}"/>
+									<g:select class="select" name="year"  value=''  from="${years}"  noSelection="${['null':'']}"/>
 									
 								</p>
 								<p>

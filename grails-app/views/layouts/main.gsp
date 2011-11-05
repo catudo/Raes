@@ -32,10 +32,11 @@
 				<h1 id="branding"><a href="../">Raes</a></h1>
 			</div>
 			<div class="clear"></div>
-			<sec:ifAllGranted roles="ROLE_ADMIN">
+		
 				<div class="grid_16">
 					<ul class="nav main">
-						<li >
+					<sec:ifAllGranted roles="ROLE_ADMIN">
+						<li>
 							<a  href="#" class="linkPath" link="${server}/user/index" >Usuarios</a>
 						</li>
 						<li >
@@ -44,12 +45,20 @@
 						<li >
 							<a href="#" class="linkPath" link="${server}/queries/index">Consultas</a>
 						</li>
+					</sec:ifAllGranted>
+						<li class="secondary" >
+							<a href="${server}/logout/index">Cerrar Sesi&oacuten</a>
+						</li>
+						
 						<li class="secondary" >
 							<a href="#" >${user.names}</a>
 						</li>
+						
+						
 					</ul>
+					
 				</div>
-			</sec:ifAllGranted>
+			
 			<div class="content grid_16">
 				<g:hiddenField name="accessLog" value="${accessLog.id}" />
 				<g:layoutBody />
