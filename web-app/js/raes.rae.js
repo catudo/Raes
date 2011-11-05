@@ -6,7 +6,7 @@ $(document).ready(function(){
 	listRaes()
 	deleteAuthor()
 	showRae()
-	generatePdf()
+	
 
 });
 
@@ -234,12 +234,4 @@ function showRae(){
 }
 
 
-function generatePdf(){
-	
-	$("#raeDiv").delegate(".printRae", "click", function(e) {
-	
-		$(this).parent().submit()
-		
-	})
-	
-}
+

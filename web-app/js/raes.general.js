@@ -1,7 +1,7 @@
 var webroot = '/Raes'
 $(document).ready(function(){
 clickTabs()
- 
+ generatePdf()
 
 });
 
@@ -22,4 +22,12 @@ function clear(form) {
 }
 
 
-
+function generatePdf(){
+	
+	$("#raeDiv").delegate(".printRae", "click", function(e) {
+	
+		$(this).parent().submit()
+		
+	})
+	
+}

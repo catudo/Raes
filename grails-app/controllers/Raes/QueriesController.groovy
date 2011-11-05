@@ -130,7 +130,7 @@ class QueriesController {
 	}
 	
 	def generatePdf={
-		chain(controller:'Rae',action:'generatePdf',params:params)
+		chain(controller:'rae',action:'generatePdf',params:params)
 	}
 	
 }
