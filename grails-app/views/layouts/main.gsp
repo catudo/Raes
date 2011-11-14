@@ -29,7 +29,7 @@
 	<body>
 		<div class="container_16">
 			<div class="grid_16">
-				<h1 id="branding"><a href="../">Raes</a></h1>
+				<h1 id="branding"><a href="../">CATGIS-REDIS</a></h1>
 			</div>
 			<div class="clear"></div>
 		

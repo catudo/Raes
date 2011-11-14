@@ -30,7 +30,8 @@
         <div id="wrapper">
             <div id="header">
                 <div id="logo">
-                    <h1><a >Raes<span>&amp;</span>Attorney</a></h1>
+                
+                    <h1><a >CATGIS<span>-</span>REDIS</a></h1>
                 </div>
                 <div class="clr">
                 </div>
