@@ -1,6 +1,6 @@
 <%@page import="raes.Role"%>
 <g:javascript src="raes.user.js" />
-<g:javascript src="jquery-validation/jquery.validate.min.js" />
+<g:javascript src="jquery-validation/jquery.validate.js" />
 <ul class="nav main">
 	<li >
 		<a >Edici&oacute;n de Usuarios</a>
@@ -44,6 +44,8 @@
 				<g:select class="select" name="role" from="${Role.list()}"  optionValue="${{message(code:it.authority)}}" optionKey="id"></g:select>
 			</p>
 			<a id="saveButton" class="button right" id="submitForm" value=""  id="dummy4">Almacenar</a>
+			<a id="cancelButton" class="button right" id="submitForm" value=""  id="dummy4">Cancelar</a>
+			
 		</fieldset>
 		</form>
 		

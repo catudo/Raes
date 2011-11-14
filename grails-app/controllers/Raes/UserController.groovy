@@ -78,7 +78,8 @@ class UserController {
 		def userBeforeUpdate
 		if(userInstance){
 		userBeforeUpdate = userInstance
-		UserRole.remove userInstance, userInstance.role
+		def userRol = UserRole.findByUser(userInstance)
+		UserRole.remove userInstance, userRol.role
 		}
 		if(params.passwd.equals("") || !params.passwd){
 			params.passwd =userInstance.passwd ;
@@ -89,6 +90,22 @@ class UserController {
 		if(!userInstance){
 		userInstance = new User(params)
 		
+		}else{
+		
+		def properties =[
+			"username",
+			"names",
+			"lastName",
+			"email",
+			"passwd"
+			]
+		
+		
+		properties.each{
+			userInstance.putAt(it, params.getAt(it))
+			
+		}
+		
 		}
 		
 		if (userInstance.save(flush: true)) {
@@ -97,11 +114,15 @@ class UserController {
 			
 			def event = new Event(eventName:"save",accessLog:accessLogInstance,admissionDate:new Date(),domainName:"User",domainId:userInstance.id,beforeUpdateAttribute:userJson,AfterUpdateAttribute:userInstance.encodeAsJSON())
 			event.save(flush:true)
-        }
+			
+			render userInstance as JSON
+        }else{
+		render userInstance.errors as JSON
+		}
 		
 		 
 		
-		render userInstance as JSON
+		
     }
 
     def show = {

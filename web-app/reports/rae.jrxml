@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rae2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="210"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -33,16 +33,16 @@
 			<frame>
 				<reportElement mode="Opaque" x="2" y="0" width="451" height="100" backcolor="#000000"/>
 				<textField>
-					<reportElement style="SubTitle" x="304" y="71" width="142" height="29"/>
+					<reportElement style="SubTitle" x="249" y="71" width="199" height="29"/>
 					<textElement markup="none">
-						<font fontName="Arial" size="22" isBold="false"/>
+						<font fontName="Arial" size="12" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement style="Title" x="0" y="0" width="388" height="66"/>
+					<reportElement style="Title" x="0" y="0" width="446" height="41"/>
 					<textElement markup="none">
-						<font fontName="Arial" isBold="false"/>
+						<font fontName="Arial" size="24" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 				</textField>
@@ -58,9 +58,9 @@
 				</textField>
 			</frame>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="175" y="71" width="126" height="29" forecolor="#CCCCCC" backcolor="#FFFFFF"/>
+				<reportElement mode="Transparent" x="67" y="71" width="173" height="29" forecolor="#CCCCCC" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="22" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
