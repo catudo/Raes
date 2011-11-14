@@ -1,7 +1,7 @@
 <%@page import="raes.University"%>
 <g:javascript src="raes.queries.js" />
 
-<div style="padding:0;" class="box grid_16">
+<div style="padding:0; margin-top:10px " class="box grid_16">
 	<h2 style="margin:0"><a id="toggle-grid" style="background-position: 99.3% 50%; cursor: pointer;" href="#" class="visible">Parametros</a></h2>
 	
 	<div id="divForm"  class="block" style="margin: 0px;">

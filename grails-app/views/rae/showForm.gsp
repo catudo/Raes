@@ -1,9 +1,9 @@
 <meta name="layout" content="ajax">
 <h2><a id="toggle-search" href="#" >Agregar de Raes</a></h2>
-	<div class="add">
-		<div>
+	<div class="add" >
+		<div class="grid_16"  >
 			<g:form name="raeForm">
-				<fieldset>
+				<fieldset class="raeFieldSet grid_16">
 					<legend>
 						Contenido
 					</legend>

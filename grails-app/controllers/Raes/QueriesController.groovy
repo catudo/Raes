@@ -5,6 +5,7 @@ import org.apache.jasper.compiler.Node.ParamsAction;
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 import raes.Author;
+import raes.KeyWord;
 import raes.Rae
 import raes.University;
 import raes.User
@@ -54,20 +55,24 @@ class QueriesController {
 
 						eq('id',params.university.toLong())
 					}
+					
+					join "University"
 				}
-
+				if(!params.topographicalNumber?.equals('')){	
 				eq('topographicalNumber',params.topographicalNumber)
-				if(params.year.isNumber())
+				}
+				if(params.year.isNumber()){
 				eq('year', params.year.toInteger())
+				}
 				
-				like('keyWords',params.keyWord+"%")
 				eq('name', params.name)
+				
 			}
-
-			join "University"
+			
+			
+			
+			
 		}
-
-		
 		
 		
 		
@@ -75,6 +80,13 @@ class QueriesController {
 			def authors = Author.findByName(params.authors)
 			def raesAuthor = authors.raes
 			raes.addAll(raesAuthor)
+			
+		}
+		
+		if(!(params.keyWords.equals(''))){
+			def keyWords = KeyWord.findByName(params.keyWords)
+			def raesKeyWords = keyWords.raes
+			raes.addAll(raesKeyWords)
 			
 		}
 		
@@ -112,7 +124,7 @@ class QueriesController {
 			row.add(rae.city)
 			row.add(rae.analyst)
 			row.add(rae.university.name)
-			row.add(rae.keyWords)
+			row.add(rae.keyWords.join(","))
 			row.add(rae.category.name)
 			row.add(rae.authors.join(","))
 			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))

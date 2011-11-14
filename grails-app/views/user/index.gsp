@@ -1,12 +1,12 @@
 <%@page import="raes.Role"%>
 <g:javascript src="raes.user.js" />
-<g:javascript src="jquery-validation/jquery.validate.min.js" />
+<g:javascript src="jquery-validation/jquery.validate.js" />
 <ul class="nav main">
 	<li >
 		<a >Edici&oacute;n de Usuarios</a>
 	</li>
 </ul>
-<div  id="usersOperation">
+<div  id="usersOperation" style="margin-top:10px;">
 	<div class="grid_4  box">
 		<h2><a id="toggle-search" href="#" >Almacenar Usuarios</a></h2>
 		<fieldset>
@@ -44,10 +44,12 @@
 				<g:select class="select" name="role" from="${Role.list()}"  optionValue="${{message(code:it.authority)}}" optionKey="id"></g:select>
 			</p>
 			<a id="saveButton" class="button right" id="submitForm" value=""  id="dummy4">Almacenar</a>
+			<a id="cancelButton" class="button right" id="submitForm" value=""  id="dummy4">Cancelar</a>
+			
 		</fieldset>
 		</form>
 		
 	</div>
-	<div id="userlist" style="" class="grid-9 omega"></div>
+	<div id="userlist" style="overflow: auto;" class="grid-9 omega"></div>
 </div>
 <div id="EventList" class="grid_16" style="display:none"></div>

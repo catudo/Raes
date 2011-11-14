@@ -1,7 +1,8 @@
 <g:javascript src="swfobject/swfobject.js" />
 
-<div id="mainDiv"  class="box grid_16 alfa omega">
-<div id='university'>
+<div id="mainDiv"  style="margin-top:10px "   class="box grid_16 alfa omega">
+
+<div id='university' class="grid_4">
 
 <script type="text/javascript">
 swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
@@ -14,7 +15,7 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 
 </div>
 
-<div id='year'>
+<div id='year' class="grid_4">
 
 <script type="text/javascript">
 swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
@@ -26,7 +27,7 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 
 </div>
 
-<div id='methodology'>
+<div id='methodology' class="grid_4">
 
 <script type="text/javascript">
 swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
@@ -40,7 +41,7 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 
 </div>
 
-<div id='keywords'>
+<div id='keywords' class="grid_4">
 
 <script type="text/javascript">
 

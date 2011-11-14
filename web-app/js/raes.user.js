@@ -11,6 +11,26 @@ $(document).ready(function() {
 	editStatus()
 });
 function setUpForm() {
+	
+	$("#usersOperation").delegate('#cancelButton', "click", function() {
+		$('#passwd').removeClass('editable')
+		
+		$("#passwd").rules("add", {
+			required : true
+		});
+		
+		clear('#saveUser')
+		
+	})
+
+	/*
+	jQuery.validator.addMethod("requiredPassword", function(value, element) {
+		var flag = !($(element).hasClass('editable')) 
+		
+		return  flag
+	});
+	*/
+
 
 	var validator = $("#saveUser").validate({
 		onsubmit : true,
@@ -68,24 +88,8 @@ function setUpForm() {
 				}
 			},
 			passwd : {
-				required :function(element) {
-					if($("#userId").val().length == 0) {
-					return true
-					}else{
-					$(element).val('')
-					
-					}
-										
-				},
-				
-				success : function() {
-					if(validator.numberOfInvalids() > 0) {
+				required :true
 
-					} else {
-
-					}
-
-				}
 			},
 			email : {
 				required : true,
@@ -109,8 +113,9 @@ function setUpForm() {
 				required : "Los Apellidos son Requeridos"
 			},
 			passwd : {
-				required : "El password es Requerido"
+				required : "Ingrese un password"
 			},
+			
 			username : {
 				required : "El Nombre de Usuario es Requerido"
 			},
@@ -133,7 +138,11 @@ function setUpForm() {
 
 					clear(form)
 					listUsers()
-
+					$('#passwd').removeClass('editable')
+			
+					$("#passwd").rules("add", {
+						required : true
+					});
 				}
 			});
 			return false;
@@ -143,6 +152,12 @@ function setUpForm() {
 			$(element).valid();
 		}
 	});
+	
+	
+
+	
+
+
 
 }
 
@@ -163,7 +178,7 @@ function buildTable(response) {
 	var data = response.data;
 	var col = response.columns;
 
-	$('#userlist').html('<table id="user_table" style="width: 940px;"></table>');
+	$('#userlist').html('<table id="user_table" style="width: 100%;"></table>');
 	data_table = $('#user_table').dataTable({
 		"aaData" : data,
 		"aoColumns" : col,
@@ -206,6 +221,12 @@ function showUser() {
 		var userId = $(this).attr("userId")
 		var params = {}
 		params["userId"] = userId
+		$('#passwd').addClass('editable')
+		
+		$("#passwd").rules("remove");
+		
+		
+		
 		$.ajax({
 			type : "POST",
 			url : webroot + "/user/show",

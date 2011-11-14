@@ -9,7 +9,7 @@
 		<a class="tab"  id="listTab">Lista de Raes</a>
 	</li>
 </ul>
-<div id="addRaeDiv">
+<div id="addRaeDiv" class="grid_16" style="margin-top:10px">
 <div  class="box grid_16 alfa omega">
 	<h2><a id="toggle-search" href="#" >Atributos de Raes</a></h2>
 	<div class="add">
@@ -26,7 +26,7 @@
 					<p>
 						<label>descripci&oacute;n </label>
 						<br>
-						<g:textArea name="description"></g:textArea>
+						<g:textArea name="description"  rows="5" cols="55"></g:textArea>
 					</p>
 					<input class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>
@@ -45,7 +45,7 @@
 					<p>
 						<label>descripci&oacute;n </label>
 						<br>
-						<g:textArea name="description"></g:textArea>
+						<g:textArea name="description" rows="5" cols="55"></g:textArea>
 					</p>
 					<input class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>
@@ -58,11 +58,11 @@
 </div>
 </div>
 
-<div id="listRaeDiv" style="display:none;">
+<div id="listRaeDiv" class='grid_16' style="display:none; margin-top:10px;" >
 <div  class="box grid_16 alfa omega">
 	<h2><a id="toggle-search" href="#" >Lista de Raes</a></h2>
 	
-	<div id ="raeDiv">
+	<div id ="raeDiv"  style=" width:100%; overflow: auto;">
 	
 	
 	
