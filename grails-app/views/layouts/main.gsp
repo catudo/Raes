@@ -42,10 +42,18 @@
 						<li >
 							<a href="#" class="linkPath" link="${server}/rae/index">Administraci&oacute;n de la informaci&oacute;n</a>
 						</li>
-						<li >
-							<a href="#" class="linkPath" link="${server}/queries/index">Consultas</a>
-						</li>
+						
 					</sec:ifAllGranted>
+					
+					<li >
+							<a href="#" class="linkPath" link="${server}/queries/index">Consultas</a>
+					</li>
+						
+					
+					<li>
+							<a href="#" class="linkPath" link="${server}/report/index">Reportes</a>
+						</li>
+					
 						<li class="secondary" >
 							<a href="${server}/logout/index">Cerrar Sesi&oacuten</a>
 						</li>

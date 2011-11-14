@@ -5,7 +5,8 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
 import raes.Author
 import raes.Category
-import raes.Rae;
+import raes.KeyWord
+import raes.Rae
 import raes.University
 import raes.User
 class RaeController {
@@ -84,7 +85,6 @@ class RaeController {
 					name:params.name,
 					analyst:params.analyst,
 					university:University.get(params.university),
-					keyWords:params.keyWords,
 					category:Category.get(params.category)
 					]
 
@@ -104,6 +104,25 @@ class RaeController {
 		}
 
 		properties.put("authors", authorList)
+		
+		def keyWordsNames = request.getParameterValues("keyword");
+		
+		def keyWords = []
+		keyWordsNames.each{word->
+			def keyWord = KeyWord.findByName(word)
+
+			if(keyWord==null){
+				keyWord = new KeyWord(name:word)
+				if(!word.equals(""))
+				keyWord.save(flush:true)
+			}
+
+			keyWords.add(keyWord)
+		}
+
+		properties.put("keyWords", keyWords)
+		
+		
 
 		def rae
 
@@ -161,7 +180,7 @@ class RaeController {
 			row.add(rae.city)
 			row.add(rae.analyst)
 			row.add(rae.university.name)
-			row.add(rae.keyWords)
+			row.add(rae.keyWords.join(","))
 			row.add(rae.category.name)
 			row.add(rae.authors.join(","))
 			row.add("<a class='editRae' raeId="+rae.id+">Editar<a>")
@@ -183,12 +202,21 @@ class RaeController {
 	def deleteRae={
 		def rae = Rae.get(params.raeId)
 		rae.authors = null
+		rae.keywords = null
 		rae.save(flush:true)
 		rae.delete(flush:true)
 		render rae as JSON
 		
 	}
 	
+	
+	def showForm={
+		def universities = University.list()
+		def categories = Category.list()
+		
+		[categories:categories , universities:universities]
+		
+	}
 	
 	def showRae={
 		def rae = Rae.get(params.raeId)
@@ -201,8 +229,7 @@ class RaeController {
 			"result",
 			"topographicalNumber",
 			"city",
-			"analyst",
-			"keyWords"
+			"analyst"
 		]
 		
 		
@@ -224,8 +251,20 @@ class RaeController {
 			
 		}
 		
+		
 		raeObject.putAt("author", authorsNameList)
 		
+		def keyWords = rae.keyWords
+		
+		def keyWordsList =[]
+		
+		keyWords.each{
+			keyWordsList.add(it.name)
+		}
+		
+		
+		
+		raeObject.putAt("keyWords", keyWordsList)
 		
 		render raeObject as JSON
 		

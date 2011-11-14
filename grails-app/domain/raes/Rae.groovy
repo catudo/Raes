@@ -9,9 +9,8 @@ class Rae {
 	String city
 	String name
 	String analyst
-	String keyWords
 	static belongsTo =[university:University,category:Category]
-	static hasMany = [authors:Author]
+	static hasMany = [authors:Author,keyWords:KeyWord]
 	//categories:Category
     static constraints = {
 		authors nullable:true

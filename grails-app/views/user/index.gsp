@@ -5,9 +5,6 @@
 	<li >
 		<a >Edici&oacute;n de Usuarios</a>
 	</li>
-	<li >
-		<a>Eventos</a>
-	</li>
 </ul>
 <div  id="usersOperation">
 	<div class="grid_4  box">

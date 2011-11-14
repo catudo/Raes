@@ -2,17 +2,17 @@ $(document).ready(function(){
 
 	saveProperties()
 	displayDivs()
-	addAuthor()
+	addAuthorAndKeyWords()
 	listRaes()
 	deleteAuthor()
 	showRae()
-	
+	getForm()
 
 });
 
 
 function saveProperties(){
-	$(".add").delegate(".evt-properties", "click", function(e) {
+	$(".container_16").delegate(".evt-properties", "click", function(e) {
 		
 		e.preventDefault()
 		
@@ -54,11 +54,7 @@ function saveProperties(){
 			success : function(response) {
 				
 				clear("#"+formId)
-				
-				
-				if(controller!="saveRae")
-				window.location.reload(true);
-				else
+				getForm()
 				listRaes()
 
 
@@ -154,13 +150,22 @@ function buildTable(response) {
 }
 
 
-function addAuthor(){
-	$(".add").delegate(".evt-addAuthor", "click", function(e) {
+function addAuthorAndKeyWords(){
+	$("#raeFormDiv").delegate(".evt-addAuthor", "click", function(e) {
 		e.preventDefault()
 		$(this).before('<p><input type="text" value="" id="author" name="author" class="text"></p>')
 	
 	
 	})
+	
+	
+	$("#raeFormDiv").delegate(".evt-addKeyWords", "click", function(e) {
+		e.preventDefault()
+		$(this).before('<p><input type="text" value="" id="keyword" name="keyword" class="text"></p>')
+	
+	
+	})
+	
 }
 
 
@@ -195,7 +200,7 @@ function showRae(){
 				//clear("#raeForm")
 				$("#raeId").val(raeId)
 				for (var field in response) {
-					if (field != "author") {
+					if (field != "author" && field !="keyWords") {
 						
 						if(field !="name"){
 						var tag = $("#"+field)
@@ -207,6 +212,21 @@ function showRae(){
 						$("#raeForm").find('input[name="name"]').val(response[field])
 							
 						}
+					}
+					else if (field =="keyWords"){
+						var keyWords = response[field]
+						
+						for (var i = 0; i < keyWords.length; i++) {
+							if (i == 0) {
+								$("#keyword").val(keyWords[i])
+							}
+							else {
+								if(i<keyWords.length)
+								$(".evt-addKeyWords").before('<p><input type="text" value="' + keyWords[i] + '" id="keyword" name="keyword" class="text"></p>')
+								
+							}
+						}
+						
 					}
 					else {
 						var authors = response[field]
@@ -233,5 +253,19 @@ function showRae(){
 	});
 }
 
+function getForm(){
+	
+	$.ajax({
+		type : "POST",
+		url : webroot + "/rae/"+"showForm",
+		success : function(response) {
+			
+			$("#raeFormDiv").html('')
+			$("#raeFormDiv").html(response)
+			
 
+
+		}
+	});
+}
 
