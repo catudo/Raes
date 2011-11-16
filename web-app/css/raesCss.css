@@ -4,7 +4,7 @@
 */
 
 * { margin: 0; padding: 0; }
-body { font: .74em Tahoma, Verdana, Sans-Serif, Arial; background: url(../images/body.gif) repeat; color: #7f7f7f; }
+body { font: .74em Tahoma, Verdana, Sans-Serif, Arial; background: url(../images/body.gif) repeat;  }
 h1 { font: normal 3.4em "Trebuchet MS", Helvetica, Arial; }
 h2 { font: normal 1.8em "Trebuchet MS", Helvetica, Arial; color: #dfdfdf; margin: 0 0 15px; }
 h3 { font: normal 1.4em "Trebuchet MS", Helvetica, Arial; margin: 0 0 20px; }
@@ -17,7 +17,7 @@ img { outline: 0; border: 0; }
 #wrapper { width: 984px; margin: auto; }
 .clr { clear: both; }
 #logo { float: left; padding: 30px 15px; }
-	#logo h1 a { color: #fff; }
+	#logo h1 a { color: #0000; }
 		#logo h1 a span { color: #808080; }
 #menu { height: 44px; padding: 5px 0 0 4px; }
 	#menu li { float: left; font-size: 1.3em; text-transform: uppercase; }
