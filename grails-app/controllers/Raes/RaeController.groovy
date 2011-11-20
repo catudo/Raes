@@ -74,8 +74,7 @@ class RaeController {
 	
 	def saveRae ={
 		def raeId = params.raeId
-
-
+		
 		def properties =[year:(params.year.getYear()+1900),
 					summary:params.summary,
 					methodology:params.methodology,
@@ -84,8 +83,8 @@ class RaeController {
 					city:params.city,
 					name:params.name,
 					analyst:params.analyst,
-					university:University.get(params.university),
-					category:Category.get(params.category)
+					university:University.get((params.university.isNumber())?params.university:0),
+					category:Category.get((params.category.isNumber())?params.category:0)
 					]
 
 		def authorsNames = request.getParameterValues("author");
@@ -152,9 +151,10 @@ class RaeController {
 		def raes = Rae.list()
 		List finalData = new ArrayList ();
 		def columns = [
+			[ "sTitle": "id" ],
 			[ "sTitle": "Nombre" ],
 			["sTitle": "Metodologia" ],
-			["sTitle": "Año" ],
+			["sTitle": "A–o" ],
 			[ "sTitle": "Resultado" ],
 			[ "sTitle": "Numero Topografico" ],
 			[ "sTitle": "Ciudad"],
@@ -169,9 +169,12 @@ class RaeController {
 
 		];
 	
+		
 	
+		
 		raes.each{rae->
 			def row=[]
+			row.add("Rae-"+rae.id+"-"+rae.year)
 			row.add(rae.name)
 			row.add(rae.methodology)
 			row.add(rae.year)
@@ -179,9 +182,9 @@ class RaeController {
 			row.add(rae.topographicalNumber)
 			row.add(rae.city)
 			row.add(rae.analyst)
-			row.add(rae.university.name)
+			row.add(rae.university?.name)
 			row.add(rae.keyWords.join(","))
-			row.add(rae.category.name)
+			row.add(rae.category?.name)
 			row.add(rae.authors.join(","))
 			row.add("<a class='editRae' raeId="+rae.id+">Editar<a>")
 			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))
@@ -202,7 +205,7 @@ class RaeController {
 	def deleteRae={
 		def rae = Rae.get(params.raeId)
 		rae.authors = null
-		rae.keywords = null
+		rae.keyWords = null
 		rae.save(flush:true)
 		rae.delete(flush:true)
 		render rae as JSON
@@ -306,4 +309,107 @@ class RaeController {
 		chain(controller:'jasper',action:'index',model:[data:report],params:params)
 		
 	}
+	
+	def listUniversities={
+		def universities = University.list()
+		List finalData = new ArrayList ();
+		def columns = [
+			[ "sTitle": "Nombre" ],
+			["sTitle": "Descripcion" ],
+			["sTitle": "" ]
+
+		];
+	
+	
+		universities.each{university->
+			def row=[]
+			row.add(university.name)
+			row.add(university.description)
+			row.add("<a class='deleteProperty deleteUniversity' universityId="+university.id+">Eliminar<a>")
+			finalData.add(row)
+			
+		}
+		
+		HashMap json_response= new HashMap();
+		json_response.put("data",finalData);
+		json_response.put("columns",columns);
+		
+		render json_response as JSON
+		
+		
+	}
+	
+	def listCategories={
+		
+		def categories = Category.list()
+		List finalData = new ArrayList ();
+		def columns = [
+			[ "sTitle": "Nombre" ],
+			["sTitle": "Descripcion" ],
+			["sTitle": "" ]
+
+		];
+	
+	
+		categories.each{category->
+			def row=[]
+			row.add(category.name)
+			row.add(category.description)
+			row.add("<a class='deleteProperty deleteCategory' categoryId="+category.id+">Eliminar<a>")
+			finalData.add(row)
+			
+		}
+		
+		HashMap json_response= new HashMap();
+		json_response.put("data",finalData);
+		json_response.put("columns",columns);
+		
+		render json_response as JSON
+		
+		
+		
+	}
+	
+	def deleteUniversity={
+		def university = University.get(params.id)
+		
+		
+		def raes = Rae.findAllByUniversity(university)
+		
+		if(raes.size()==0){
+			university.delete(flush: true)
+			render university as JSON 
+		}else{
+		
+			university.errors.rejectValue("name","university.Constraint");
+
+				render university.errors as JSON
+		}
+		
+		
+	}
+	
+	
+	def deleteCategory={
+		
+		def category = Category.get(params.id)
+	
+		def raes = Rae.findAllByCategory(category)
+		
+		if(raes.size()==0){
+			category.delete(flush: true)
+			render category as JSON
+		}
+		else{
+			category.errors.rejectValue("name","category.constraint");
+
+				render category.errors as JSON
+
+		}
+
+		
+	}
+	
+	
+	
 }

@@ -33,11 +33,13 @@ class UserController {
 		
 		List finalData = new ArrayList ();
 		def columns = [
-		 [ "sTitle": "Nombres" ],
+		 [ "sTitle": "Identificacion" ],
+		[ "sTitle": "Nombres" ],
 		 [ "sTitle": "Apellidos" ],
 		 [ "sTitle": "email" ],
 		 [ "sTitle": "Usuario" ],
 		 [ "sTitle": "Estado"],
+		 [ "sTitle": "" ],
 		 [ "sTitle": "" ],
 		 [ "sTitle": "" ]
 		];
@@ -45,6 +47,7 @@ class UserController {
 		
 		userlist.each{user->
 			def row=[]
+			row.add(user.identification)
 			row.add(user.names)
 			row.add(user.lastName)
 			row.add(user.email)
@@ -52,6 +55,7 @@ class UserController {
 			row.add((user.enabled)?"Habilitado":"Desahabilitado")
 			row.add("<a class='editUser' userId="+user.id+">Editar<a>")
 			row.add("<a class='changeUser' userId="+user.id+">Cambiar Estado<a>")
+			row.add("<a class='deleteUser' userId="+user.id+">Eliminar<a>")
 			finalData.add(row)
 			
 		}
@@ -132,6 +136,7 @@ class UserController {
 			"username",
 			"names",
 			"lastName",
+			"identification",
 			"email",]
 		
 		
@@ -155,6 +160,16 @@ class UserController {
 		render userInstance as JSON
 		
     }
+	
+	def deleteUser={
+		def userInstance = User.get(params.userId)
+		
+		userInstance.delete(flush:true)
+		
+		
+		render userInstance as JSON
+		
+	}
 
     def update = {
         def userInstance = User.get(params.id)

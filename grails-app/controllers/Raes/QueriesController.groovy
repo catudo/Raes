@@ -97,9 +97,10 @@ class QueriesController {
 		
 		List finalData = new ArrayList ();
 		def columns = [
+			[ "sTitle": "Id" ],
 			[ "sTitle": "Nombre" ],
 			["sTitle": "Metodologia" ],
-			["sTitle": "Año" ],
+			["sTitle": "A–o" ],
 			[ "sTitle": "Resultado" ],
 			[ "sTitle": "Numero Topografico" ],
 			[ "sTitle": "Ciudad"],
@@ -116,6 +117,7 @@ class QueriesController {
 	
 		raes.each{rae->
 			def row=[]
+			row.add("Rae-"+rae.id+"-"+rae.year)
 			row.add(rae.name)
 			row.add(rae.methodology)
 			row.add(rae.year)

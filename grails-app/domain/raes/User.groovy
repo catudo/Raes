@@ -3,7 +3,7 @@ package raes
 class User {
 
 	
-
+	String identification
 	String username
 	String passwd
 	String names

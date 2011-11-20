@@ -11,60 +11,62 @@
 					<g:hiddenField name="raeId"/>
 					<p>
 						<label>Nombre</label>
-						<g:textField class="text" name="name"/>
+					</p>
+					<p>
+						<g:textField class="raeText" name="name"/>
 					</p>
 					
 					<p>
 						<label>Analista</label>
-						<g:textField class="text" name="analyst"/>
+						<g:textField class="raeText" name="analyst"/>
 					</p>
 					<p>
 						<label>Ciudad</label>
-						<g:textField class="text" name="city"/>
+						<g:textField class="raeText" name="city"/>
 					</p>
 					<p>
 						<label>Metodologia</label>
-						<g:textField class="text" name="methodology"/>
+						<g:textField class="raeText" name="methodology"/>
 					</p>
 					<p>
 						<label>Numero Topografico</label>
-						<g:textField class="text" name="topographicalNumber"/>
+						<g:textField class="raeText" name="topographicalNumber"/>
 					</p>
 					<p>
 						<label>autor(es)</label>
-						<g:textField class="text" name="author"/>
+						<g:textField class="raeText" name="author"/>
 						<br>
 						</br><a class="button evt-addAuthor" href="#">Agregar Autor</a>
 					</p>
 					<p>
 						<label>Palabras Claves</label>
-						<g:textField class="text" name="keyword"/>
+						<g:textField class="raeText" name="keyword"/>
 						<br>
 						</br><a class="button evt-addKeyWords" href="#">Agregar Palabra Clave</a>
 					</p>
 					<p>
 						<label>Universidad</label>
-						<g:select name="university" optionKey="id" from="${universities}"/>
+						<g:select name="university" noSelection="${[null:'']}" class="raeText" optionKey="id" from="${universities}"/>
 					</p>
 					
 					<p>
 						<label>Categoria</label>
-						<g:select name="category"  optionKey="id" from="${categories}"/>
+						<g:select name="category"  noSelection="${[null:'']}" class="raeText" optionKey="id" from="${categories}"/>
 					</p>
 					
 					<p>
 						<label>Resultado</label>
-						<g:textField class="text" name="result"/>
+						<g:textField class="raeText" name="result"/>
 					</p>
 					
 					<p>
 						<label>Resumen</label>
 						<br>
-						<g:textArea name="summary" style="width: 1348px; height: 167px;"></g:textArea>
+						<g:textArea name="summary" style="width: 1029px; height: 167px;"></g:textArea>
 					</p>
 					<p>
 						<label>Año</label>
-						<g:datePicker name="year" value="${new Date()}" precision="year" years="${1900..2100}"/>
+						<g:datePicker name="year"  value="${new Date()}" precision="year" years="${1900..2100}"/>
 					</p>
 					<input  class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>

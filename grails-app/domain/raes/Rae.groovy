@@ -1,6 +1,7 @@
 package raes
 
 class Rae {
+	
 	int year
 	String summary
 	String methodology 
@@ -14,6 +15,9 @@ class Rae {
 	//categories:Category
     static constraints = {
 		authors nullable:true
+		keyWords nullable:true
+		category nullable:true
+		university nullable:true
     }
 	
 	static mapping = {

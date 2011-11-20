@@ -322,11 +322,27 @@ fieldset p label {
 	width:98%;
 }
 fieldset p input {
-	width:98%;
+	width:97%;
 }
+
+fieldset p input .raeText {
+	width:77%;
+}
+
 fieldset p select {
-	width:99%;
+	width:97%;
 }
+
+
+
+#year_year{
+	width:96%;
+}
+
+fieldset p select .raeText{
+	width:77%;
+}
+
 fieldset.login p label {
 	float:left;
 	line-height:2em;

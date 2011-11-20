@@ -19,6 +19,7 @@ class BootStrap {
 
 			testUser = new User(
 					username:'admin',
+					identification:'0',
 					passwd: springSecurityService.encodePassword('root'),
 					names:'names',
 					lastName:'admin',
@@ -28,7 +29,7 @@ class BootStrap {
 					accountLocked:false,
 					passwordExpired:false
 					)
-			def create_user= testUser.save(flush: true)
+			 testUser.save(flush: true)
 			
 			UserRole.create(testUser,Role.get(1))
 		}

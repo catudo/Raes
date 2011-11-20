@@ -37,7 +37,7 @@
 									
 									%>
 									
-									<g:select class="select" name="year"  value=''  from="${years}"  noSelection="${['null':'']}"/>
+									<g:select class="select" name="year"  value='2005'  from="${years}"  noSelection="${['2005':'']}"/>
 									
 								</p>
 								<p>

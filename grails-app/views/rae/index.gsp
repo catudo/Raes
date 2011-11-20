@@ -3,17 +3,21 @@
 
 <ul class="nav main">
 	<li >
-		<a  class="tab"  id="saveTab">Almacenar Rae</a>
+		<a  class="tab"  id="saveTab">Almacenar Ficha</a>
 	</li>
 	<li >
-		<a class="tab"  id="listTab">Lista de Raes</a>
+		<a class="tab"  id="listTab">Lista de Ficha</a>
 	</li>
+	<li >
+		<a class="tab"  id="AtTab">Atributos de Ficha</a>
+	</li>
+	
 </ul>
-<div id="addRaeDiv" class="grid_16" style="margin-top:10px">
+<div id="addRaeDiv" class="grid_16" style="margin-top:10px; display: none;">
 <div  class="box grid_16 alfa omega">
 	<h2><a id="toggle-search" href="#" >Atributos de Raes</a></h2>
 	<div class="add">
-		<div class="box grid_5 block">
+		<div class="grid_8 ">
 			<g:form name="universityForm">
 				<fieldset>
 					<legend>
@@ -26,13 +30,13 @@
 					<p>
 						<label>descripci&oacute;n </label>
 						<br>
-						<g:textArea name="description"  rows="5" cols="55"></g:textArea>
+						<g:textArea name="description"  rows="5" cols="61"></g:textArea>
 					</p>
 					<input class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>
 			</g:form>
 		</div>
-		<div class="box grid_5 block">
+		<div class="grid_8 ">
 			<g:form name="categoryForm">
 				<fieldset>
 					<legend>
@@ -45,17 +49,31 @@
 					<p>
 						<label>descripci&oacute;n </label>
 						<br>
-						<g:textArea name="description" rows="5" cols="55"></g:textArea>
+						<g:textArea name="description" rows="5" cols="61"></g:textArea>
 					</p>
 					<input class="evt-properties" type="submit" value="Almacenar" class="confirm button">
 				</fieldset>
 			</g:form>
 		</div>
+		<div class="grid_16">
+		<div id='universityListDiv'  style="overflow: auto;" class='grid_8'>
+		
+		
+		</div>
+		
+		<div id='categoryListDiv'  style="overflow: auto;" class='grid_8'>
+		
+		
+		</div>
+		</div>
+		
 	</div>
 </div>
-<div id="raeFormDiv"  class="box grid_16 alfa omega">
 
 </div>
+
+<div id="raeFormDiv"  class="box grid_16 alfa omega" style='margin-top:10px;'>
+
 </div>
 
 <div id="listRaeDiv" class='grid_16' style="display:none; margin-top:10px;" >

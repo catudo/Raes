@@ -9,6 +9,7 @@ $(document).ready(function() {
 	listUsers()
 	showUser()
 	editStatus()
+	deleteUser();
 });
 function setUpForm() {
 	
@@ -76,6 +77,17 @@ function setUpForm() {
 
 				}
 			},
+			identification : {
+				required : true,
+				success : function() {
+					if(validator.numberOfInvalids() > 0) {
+
+					} else {
+
+					}
+
+				}
+			},
 			lastName : {
 				required : true,
 				success : function() {
@@ -118,6 +130,10 @@ function setUpForm() {
 			
 			username : {
 				required : "El Nombre de Usuario es Requerido"
+			},
+			
+			identification : {
+				required : "La identificacion es Requerido"
 			},
 			email : {
 				required : "El email es incorrecto",
@@ -251,6 +267,26 @@ function editStatus() {
 		$.ajax({
 			type : "POST",
 			url : webroot + "/user/editStatus",
+			data : params,
+			success : function(response) {
+				listUsers()
+
+			}
+		});
+
+	})
+}
+
+
+
+function deleteUser() {
+	$("#userlist").delegate('.deleteUser', "click", function() {
+		var userId = $(this).attr("userId")
+		var params = {}
+		params["userId"] = userId
+		$.ajax({
+			type : "POST",
+			url : webroot + "/user/deleteUser",
 			data : params,
 			success : function(response) {
 				listUsers()

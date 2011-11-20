@@ -14,6 +14,11 @@
 		<form method="post" action="" id="saveUser">
 			<g:hiddenField name="userId"/>
 			<p>
+				<label for="identification">Identificacion</label>
+				<br>
+				<g:textField class="text" name="identification"/>
+			</p>
+			<p>
 				<label for="names">Nombres</label>
 				<br>
 				<g:textField class="text" name="names"/>

@@ -7,7 +7,9 @@ $(document).ready(function(){
 	deleteAuthor()
 	showRae()
 	getForm()
-
+	listCategories()
+	listUniversities()
+	deleteProperty()
 });
 
 
@@ -56,6 +58,8 @@ function saveProperties(){
 				clear("#"+formId)
 				getForm()
 				listRaes()
+				listCategories()
+				listUniversities()
 
 
 			}
@@ -74,15 +78,27 @@ function displayDivs(){
 		
 		
 		if(id=="saveTab"){
-			if(!$("#addRaeDiv").is(":visible")){
+			if(!$("#raeFormDiv").is(":visible")){
 				$("#listRaeDiv").slideUp()
-				$("#addRaeDiv").slideDown()
+				$("#addRaeDiv").slideUp()
+				$("#raeFormDiv").slideDown()
+				
 				
 			}
-		}else{
+		}else if(id=='listTab'){
 			if(!$("#listRaeDiv").is(":visible")){
 				$("#listRaeDiv").slideDown()
 				$("#addRaeDiv").slideUp()
+				$("#raeFormDiv").slideUp()
+				
+			}
+			
+		}else{
+			if(!$("#addRaeDiv").is(":visible")){
+				$("#listRaeDiv").slideUp()
+				$("#addRaeDiv").slideDown()
+				$("#raeFormDiv").slideUp()
+				
 				
 			}
 			
@@ -105,6 +121,128 @@ function listRaes(){
 	});
 }
 
+
+function listCategories(){
+	$.ajax({
+		type : "POST",
+		url : webroot + "/rae/listCategories",
+		
+		success : function(response) {
+			buildPropertiesTable(response,'listCategories')	
+
+		}
+	});
+}
+
+
+function listUniversities(){
+	$.ajax({
+		type : "POST",
+		url : webroot + "/rae/listUniversities",
+		
+		success : function(response) {
+			buildPropertiesTable(response,'listUniversities')	
+
+		}
+	});
+}
+
+
+function deleteProperty(){
+	//deleteProperty
+	$(".container_16").delegate(".deleteProperty", "click", function(e) {
+		var params={}
+		var id
+		var controller 
+		if($(this).hasClass('deleteUniversity')){
+			id = $(this).attr('universityId')
+			controller='deleteUniversity'
+		
+		}else{
+			id = $(this).attr('categoryId')
+			controller='deleteCategory'
+		}
+		
+		params['id']=id
+		$.ajax({
+			type : "POST",
+			url : webroot + "/rae/"+controller,
+			data:params,
+			success : function(response) {
+				if(response.errors){
+					alert(response.errors[0].message)
+					
+				}else{
+					listCategories()
+					listUniversities()
+					getForm()	
+				}
+				
+
+			}
+		});
+		
+		
+		
+		
+	})
+
+}
+
+
+
+function buildPropertiesTable(response,type){
+
+	var data = response.data;
+	var col = response.columns;
+
+	var table
+	if(type=='listUniversities'){
+		$('#universityListDiv').html("<table style='width:100%;'  id='universityTable' ></table>");
+		table =$('#universityTable')
+	}else{
+		$('#categoryListDiv').html("<table style='width:100%;' id='categoryTable' ></table>");
+		table =$('#categoryTable')
+	}
+		
+		table.dataTable({
+		"aaData" : data,
+		"aoColumns" : col,
+		"bJQueryUI" : true,
+		//"bAutoWidth": true,
+		"aaSorting" : [[1, "asc"]],
+		//"sScrollY": "466px",
+		"oLanguage" : {
+			"sProcessing" : "Procesando",
+			"sLengthMenu" : "Cantidad",
+			"sZeroRecords" : "No hay resultados",
+			"sInfo" : "Informacion",
+			"sInfoEmpty" : "Vacio",
+			"sInfoFiltered" : "Filtro",
+			"sInfoPostFix" : "post",
+			"sSearch" : "Busqueda",
+			"sUrl" : "",
+			"oPaginate" : {
+				"sFirst" : "Primero",
+				"sPrevious" : "Anterior",
+				"sNext" : "Siguiente",
+				"sLast" : "Ultimo"
+			}
+
+		},
+		"sPaginationType" : "full_numbers",
+		//sDom: 'HrtlpF',
+		sDom : 'HIrtF',
+		"iDisplayLength" : -1,
+		"aLengthMenu" : [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
+		"fnInitComplete" : function() {
+
+		}
+	});
+	
+	
+	
+}
 
 function buildTable(response) {
 
@@ -153,7 +291,7 @@ function buildTable(response) {
 function addAuthorAndKeyWords(){
 	$("#raeFormDiv").delegate(".evt-addAuthor", "click", function(e) {
 		e.preventDefault()
-		$(this).before('<p><input type="text" value="" id="author" name="author" class="text"></p>')
+		$(this).before('<p><input type="text" value="" id="author" name="author" class="text raeText"></p>')
 	
 	
 	})
@@ -161,7 +299,7 @@ function addAuthorAndKeyWords(){
 	
 	$("#raeFormDiv").delegate(".evt-addKeyWords", "click", function(e) {
 		e.preventDefault()
-		$(this).before('<p><input type="text" value="" id="keyword" name="keyword" class="text"></p>')
+		$(this).before('<p><input type="text" value="" id="keyword" name="keyword" class="text raeText"></p>')
 	
 	
 	})

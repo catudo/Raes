@@ -3,6 +3,8 @@ package raes
 class Author {
 	
 	String name
+	
+	
 
 	static hasMany =[raes:Rae]
     
