@@ -97,10 +97,10 @@ class QueriesController {
 		
 		List finalData = new ArrayList ();
 		def columns = [
-			[ "sTitle": "Id" ],
+			[ "sTitle": "Ficha" ],
 			[ "sTitle": "Nombre" ],
 			["sTitle": "Metodologia" ],
-			["sTitle": "A–o" ],
+			["sTitle": "A&ntilde;o" ],
 			[ "sTitle": "Resultado" ],
 			[ "sTitle": "Numero Topografico" ],
 			[ "sTitle": "Ciudad"],
@@ -114,10 +114,20 @@ class QueriesController {
 
 		];
 	
+	def server = CH.config.grails.serverURL
 	
+		
+		def folder = server+"/raeTemp/"
+		
 		raes.each{rae->
 			def row=[]
-			row.add("Rae-"+rae.id+"-"+rae.year)
+			
+			def file = new File("${servletContext.getRealPath('/raeTemp')}/"+"rae-"+rae.id+"-"+rae.year+".docx")
+			
+			if(!file.exists())
+			row.add("rae-"+rae.id+"-"+rae.year)
+			else
+			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"rae-"+rae.id+"-"+rae.year +'</a>')	
 			row.add(rae.name)
 			row.add(rae.methodology)
 			row.add(rae.year)
@@ -125,9 +135,9 @@ class QueriesController {
 			row.add(rae.topographicalNumber)
 			row.add(rae.city)
 			row.add(rae.analyst)
-			row.add(rae.university.name)
+			row.add(rae.university?.name)
 			row.add(rae.keyWords.join(","))
-			row.add(rae.category.name)
+			row.add(rae.category?.name)
 			row.add(rae.authors.join(","))
 			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))
 			finalData.add(row)

@@ -10,6 +10,15 @@ $(document).ready(function(){
 	listCategories()
 	listUniversities()
 	deleteProperty()
+
+	$(".container_16").delegate(".linkFile", "click", function(e) {
+	 window.location.href=$(this).attr('link')
+		
+	});	
+		
+	
+	
+	
 });
 
 
@@ -54,18 +63,19 @@ function saveProperties(){
 			url : webroot + "/rae/"+controller,
 			data : params,
 			success : function(response) {
-				
-				clear("#"+formId)
 				getForm()
-				listRaes()
-				listCategories()
-				listUniversities()
-
-
-			}
-		});
+				
+							listCategories()
+							listUniversities()
+						
+			}	
+					
+			
+			});
+	});
 		
-	})
+
+	
 	
 }
 
@@ -108,6 +118,13 @@ function displayDivs(){
 	})
 }
 
+
+function assignDocumentWithRae(){
+	
+	
+	
+	
+}
 
 function listRaes(){
 	$.ajax({
@@ -400,6 +417,18 @@ function getForm(){
 			
 			$("#raeFormDiv").html('')
 			$("#raeFormDiv").html(response)
+			
+			new AjaxUpload('documentFile', {
+				action: webroot + "/rae/saveFile",
+				onSubmit : function(file , ext){
+				
+				},
+				onComplete : function(file){
+				
+				}
+				});
+			
+			
 			
 
 

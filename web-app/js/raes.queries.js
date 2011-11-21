@@ -1,6 +1,10 @@
 $(document).ready(function(){
 
 	listRaes()
+	$(".content").delegate(".linkFile", "click", function(e) {
+		 window.location.href=$(this).attr('link')
+			
+		});	
 
 });
 

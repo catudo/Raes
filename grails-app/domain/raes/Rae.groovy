@@ -2,6 +2,7 @@ package raes
 
 class Rae {
 	
+	 
 	int year
 	String summary
 	String methodology 
@@ -25,4 +26,9 @@ class Rae {
 		
 		
 	}
+	
+	String toString(){
+		return 'Rae-'+id+"-"+year
+	}
+	
 }

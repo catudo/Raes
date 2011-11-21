@@ -1,5 +1,6 @@
-
+<%@page import="raes.Rae"%>
 <g:javascript src="raes.rae.js" />
+<g:javascript src="ajaxupload.js" />
 
 <ul class="nav main">
 	<li >
@@ -69,6 +70,9 @@
 		
 	</div>
 </div>
+
+
+
 
 </div>
 

@@ -2,6 +2,8 @@ package Raes
 import grails.converters.JSON
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import org.springframework.web.multipart.MultipartHttpServletRequest
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 import raes.Author
 import raes.Category
@@ -14,7 +16,7 @@ class RaeController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 	static layout='main'
 	def springSecurityService
-	
+	def superFileUploadService
 	def accessLogService
 
     def index = { 
@@ -71,11 +73,32 @@ class RaeController {
 	
 	}
 	
+	def saveFile={
+		try{
+		def f = request.getFile('userfile')
+		def server = CH.config.grails.serverURL
+		if(!f.empty) {
+			  f.transferTo( new File("${servletContext.getRealPath('/raeTemp')}/"+f.getOriginalFilename() ))
+		  //response.sendError(200,'Done');
+		}
+		
+		
+		def sessionUser = springSecurityService.getCurrentUser()?.id;
+		def accessLog =  accessLogService.createAccessLog(sessionUser, "/rae/index")
+		
+		
+		
+		}catch(Exception e){
+		redirect(uri:"/rae/index") 
+		}
+	}
+	
+	
 	
 	def saveRae ={
-		def raeId = params.raeId
 		
-		def properties =[year:(params.year.getYear()+1900),
+		def raeId =params.raeId
+		def properties =[year:params.year_year,
 					summary:params.summary,
 					methodology:params.methodology,
 					result:params.result,
@@ -83,8 +106,8 @@ class RaeController {
 					city:params.city,
 					name:params.name,
 					analyst:params.analyst,
-					university:University.get((params.university.isNumber())?params.university:0),
-					category:Category.get((params.category.isNumber())?params.category:0)
+					university:University.get((params.university?.isNumber())?params.university:0),
+					category:Category.get((params.category?.isNumber())?params.category:0)
 					]
 
 		def authorsNames = request.getParameterValues("author");
@@ -136,10 +159,15 @@ class RaeController {
 			}
 		}
 		
-		if(rae.save(flush:true)){
-			render rae as JSON
-		}else{
 		
+		
+		
+		if(rae.save(flush:true)){
+			
+			render rae as JSON
+			
+			
+		}else{
 		
 		render rae.errors as JSON
 		}
@@ -151,10 +179,10 @@ class RaeController {
 		def raes = Rae.list()
 		List finalData = new ArrayList ();
 		def columns = [
-			[ "sTitle": "id" ],
+			[ "sTitle": "Ficha" ],
 			[ "sTitle": "Nombre" ],
 			["sTitle": "Metodologia" ],
-			["sTitle": "A–o" ],
+			["sTitle": "A&ntilde;o" ],
 			[ "sTitle": "Resultado" ],
 			[ "sTitle": "Numero Topografico" ],
 			[ "sTitle": "Ciudad"],
@@ -169,12 +197,21 @@ class RaeController {
 
 		];
 	
-		
+		def server = CH.config.grails.serverURL
 	
+		
+		def folder = server+"/raeTemp/"
 		
 		raes.each{rae->
 			def row=[]
-			row.add("Rae-"+rae.id+"-"+rae.year)
+			
+			def file = new File("${servletContext.getRealPath('/raeTemp')}/"+"rae-"+rae.id+"-"+rae.year+".docx")
+			
+			if(!file.exists())
+			row.add("rae-"+rae.id+"-"+rae.year)
+			else
+			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"rae-"+rae.id+"-"+rae.year +'</a>')	
+			
 			row.add(rae.name)
 			row.add(rae.methodology)
 			row.add(rae.year)
@@ -216,8 +253,8 @@ class RaeController {
 	def showForm={
 		def universities = University.list()
 		def categories = Category.list()
-		
-		[categories:categories , universities:universities]
+		def server = CH.config.grails.serverURL
+		[categories:categories , universities:universities,server:server]
 		
 	}
 	
@@ -242,7 +279,7 @@ class RaeController {
 			raeObject.putAt(property, rae.getAt(property))
 		}
 		
-		raeObject.putAt("university", rae.university.name)
+		raeObject.putAt("university", rae.university?.name)
 		
 		
 		def authors = rae.authors

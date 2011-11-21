@@ -98,4 +98,4 @@ grails.plugins.springsecurity.defaultUserUrl = '/home/index'
 grails.plugins.springsecurity.userLookup.passwordPropertyName='passwd'
 grails.plugins.springsecurity.successHandler.defaultTargetUrl='/login/route'
 
-
+sfu.tempUploadDirectory = "/raeTemp"

@@ -2,7 +2,9 @@
 <h2><a id="toggle-search" href="#" >Agregar de Raes</a></h2>
 	<div class="add" >
 		<div class="grid_16"  >
-			<g:form name="raeForm">
+			
+			<form id="raeForm" enctype="multipart/form-data" name="raeForm" method="get" action="${server}/rae/saveRae" onsubmit="return sfuSubmitForm(this);">
+			
 				<fieldset class="raeFieldSet grid_16">
 					<legend>
 						Contenido
@@ -68,8 +70,29 @@
 						<label>Año</label>
 						<g:datePicker name="year"  value="${new Date()}" precision="year" years="${1900..2100}"/>
 					</p>
-					<input  class="evt-properties" type="submit" value="Almacenar" class="confirm button">
+					
+					<input  class="evt-properties confirm button" type="submit" value="Almacenar" >
 				</fieldset>
-			</g:form>
+			</form>
 		</div>
 	</div>
+	
+<div id='addFileDiv' class='grid_16'>
+	
+	<form id="raeForm" enctype="multipart/form-data" name="raeForm" method="get" action="${server}/rae/saveFile" onsubmit="return sfuSubmitForm(this);">
+		<fieldset>
+					<legend>
+						Asociar Ficha
+					</legend>
+		
+		<p>
+		<input type="file" id='documentFile' name="documentFile" id="sfuFile">
+		
+		
+		
+		</p>
+		<input  class="" type="submit" value="Almacenar" class="confirm button">
+		</fieldset>
+	</form>
+</div>	
+	
