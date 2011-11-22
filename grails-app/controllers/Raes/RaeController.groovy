@@ -153,7 +153,9 @@ class RaeController {
 		}else{
 			rae = Rae.get(raeId)
 			properties.each{key, value ->
-				
+				if(key.equals('year'))
+				rae.putAt(key, value.toInteger())
+				else
 				rae.putAt(key, value)
 				
 			}
@@ -337,8 +339,8 @@ class RaeController {
 		}
 		def auth =  rae.authors.join(",")
 		raeHash.putAt("authors", auth)
-		raeHash.putAt("category", rae.category.name)
-		raeHash.putAt("university", rae.university.name)
+		raeHash.putAt("category", rae.category?.name)
+		raeHash.putAt("university", rae.university?.name)
 		
 		
 		report.add(raeHash)

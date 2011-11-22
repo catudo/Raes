@@ -25,7 +25,8 @@ function listRaes(){
 		url : webroot + "/queries/selectRaes",
 		data : params,
 		success : function(response) {
-			buildTable(response)	
+			buildTable(response)
+			clear("#queryForm")
 
 		}
 	});
