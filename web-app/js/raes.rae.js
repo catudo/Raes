@@ -64,9 +64,10 @@ function saveProperties(){
 			data : params,
 			success : function(response) {
 				getForm()
-				
+				clear("#"+formId)
 							listCategories()
 							listUniversities()
+							listRaes()
 						
 			}	
 					

@@ -1,4 +1,5 @@
 <%@page import="raes.University"%>
+<%@page import="raes.Category"%>
 <g:javascript src="raes.queries.js" />
 
 <div style="padding:0; margin-top:10px " class="box grid_16">
@@ -17,9 +18,14 @@
 									
 								</p>
 								<p>
-									<label>Numero Topografico </label>
+									<label>Numero Asignado </label>
 									<g:textField name="topographicalNumber"/>
 									
+								</p>
+								
+								<p>
+									<label>Categoria</label>
+									<g:select class="select" name="category" optionKey="id" from="${Category.list()}"   noSelection="${['null':'']}"/>
 								</p>
 								
 							
@@ -32,7 +38,7 @@
 									def years = []
 									
 									
-									for(int i = 1900; i<=2100; i++)
+									for(int i = 2005; i<=2100; i++)
 									years.add(i)
 									
 									%>
@@ -60,6 +66,8 @@
 									<label>Universidad</label>
 									<g:select class="select" name="university" optionKey="id" from="${University.list()}"   noSelection="${['null':'']}"/>
 								</p>
+								
+								
 							
 							<input type="submit" value="Buscar" class="button">
 							</div>

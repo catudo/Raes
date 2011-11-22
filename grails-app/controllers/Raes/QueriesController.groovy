@@ -59,10 +59,17 @@ class QueriesController {
 					join "University"
 				}
 				if(!params.topographicalNumber?.equals('')){	
-				eq('topographicalNumber',params.topographicalNumber)
+				eq('id',params.topographicalNumber)
 				}
 				if(params.year.isNumber()){
 				eq('year', params.year.toInteger())
+				}
+				
+				if(params.category.isNumber()){
+					category{
+					eq('id', params.category.toLong())
+					}
+					join 'Category'
 				}
 				
 				eq('name', params.name)
