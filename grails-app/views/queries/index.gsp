@@ -51,6 +51,12 @@
 									<g:textField name="keyWords"/>
 									
 								</p>
+								
+								<p>
+									<label>Herramientas </label>
+									<g:textField name="tool"/>
+									
+								</p>
 							
 							
 							</div>
