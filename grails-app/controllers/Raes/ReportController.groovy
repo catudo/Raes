@@ -11,7 +11,9 @@ import jofc2.model.elements.FilledBarChart
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.hibernate.Hibernate
 
+import raes.KeyWord;
 import raes.Rae
+import raes.Tools;
 import raes.University
 import raes.User
 class ReportController {
@@ -49,7 +51,9 @@ class ReportController {
 		def universityLabels = []
 		universities.each{
 			def number = Rae.countByUniversity(it)
-			universityLabels.add(it.name)
+			def percentage = (int)((number /Rae.count())*100)
+			
+			universityLabels.add(it.name+"-"+percentage+"%" )
 			universitySeries.add(number)
 			
 		}
@@ -68,17 +72,18 @@ class ReportController {
 		def yearsLabels =[]
 		def yearsSeries =[]
 		
-		
+		def flag=[]
 		
 		raes.each{ 
-			if(!yearsLabels.contains(it.year.toString())){
-				yearsLabels.add(it.year.toString())
-				yearsSeries.add(Rae.countByYear(it.year))				
+			if(!flag.contains(it.year.toString())){
+				def number = Rae.countByYear(it.year)
+				
+				def percentage = (int)((number /Rae.count())*100)
+			
+				yearsLabels.add(it.year.toString()+"-"+percentage+"%")
+				yearsSeries.add(number)
+				flag.add(it.year.toString())
 			}
-			
-			
-			
-			
 			
 			
 		}
@@ -101,15 +106,19 @@ class ReportController {
 		def methodologyLabels =[]
 		def methodologySeries =[]
 		
+		def flag=[]
+		
 		raes.each{
 			
-			if(!methodologyLabels.contains(it.methodology)){
-				methodologyLabels.add(it.methodology)
-				methodologySeries.add(Rae.countByMethodology(it.methodology))
+			if(!flag.contains(it.methodology)){
+				
+				def number = Rae.countByMethodology(it.methodology)
+				def percentage = (int)((number /Rae.count())*100)
+			
+				methodologyLabels.add(it.methodology+"-"+percentage+"%")
+				methodologySeries.add(number)
+				flag.add(it.methodology)
 			}
-			
-			
-			
 			
 		}
 		
@@ -141,7 +150,11 @@ class ReportController {
 		def results = queryProfile.list();
 
 		results.each{
-			keyWordsLabels.add(it[1])
+			
+			def number = it[0]
+			def percentage = (int)((number /KeyWord.count())*100)
+			
+			keyWordsLabels.add(it[1]+"-"+percentage+"%")
 			keyWordsSeries.add(it[0])
 		}
 		
@@ -155,9 +168,48 @@ class ReportController {
 	}
 	
 	
+	def generateToolsChart={
+		
+		def keyWordsLabels =[]
+		def keyWordsSeries =[]
+		
+		def sql = '''
+			select count(tools_id) as counterValue , rae.tools.name as toolName from rae.rae_tools as raeTools
+			inner join rae.tools as tools on tools.id = raeTools.tools_id
+			group by raeTools.tools_id
+
+		'''
+		
+		def currentSession = sessionFactory.currentSession
+		def queryProfile =  currentSession.createSQLQuery(sql);
+		
+		queryProfile.addScalar("counterValue",Hibernate.INTEGER);
+		queryProfile.addScalar("toolName",Hibernate.STRING);
+		
+		def results = queryProfile.list();
+
+		results.each{
+			
+			def number = it[0]
+			def percentage = (int)((number /Tools.count())*100)
+			
+			keyWordsLabels.add(it[1]+"-"+percentage+"%")
+			keyWordsSeries.add(it[0])
+		}
+		
+		
+		def keyWordsChart = _buildChart("Herramientas",[keyWordsSeries], keyWordsLabels,Rae.count())
+		
+		render JSON.parse (keyWordsChart) as JSON
+		
+		
+		
+	}
 	
 	
-	def _buildChart(def title, def series=[], def labels=[], def top= 10) {
+	
+	
+	def _buildChart(def title, def series=[], def labels=[], def top) {
 		def ofc = OFC.getInstance()
 		//if(title.length() >27)
 			//title = wu.wrap(title,27,"\n",false)
@@ -168,7 +220,7 @@ class ReportController {
 		series.each { serie->
 			def graph = new FilledBarChart()
 			graph.setOutlineColour("#9EC3E6")
-			graph.setColour("#9EC3E6")
+			graph.setColour("#00FF00")
 			graph.addValues(serie)
 			chart.addElements(graph)
 		}
@@ -181,7 +233,7 @@ class ReportController {
 		yAxis.setColour("#FFFFFF")
 		yAxis.setMax(top)
 		yAxis.setMin(0)
-		yAxis.setSteps(10)
+		yAxis.setSteps(1)
 		xAxis.setGridColour("#C0C0C0")
 		xAxis.setColour("#C0C0C0")
 		xAxis.setLabels( labels)
@@ -189,7 +241,7 @@ class ReportController {
 		chart.setYAxis(yAxis)
 		chart.setXAxis(xAxis)
 		chart.setBackgroundColour("#F6F6F6");
-		//chart.computeYAxisRange(10)
+		//chart.computeYAxisRange(1)
 
 		return ofc.render( chart)
 

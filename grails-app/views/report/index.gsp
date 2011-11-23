@@ -15,6 +15,9 @@
 	<li >
 		<a id='keyword-evt' class="tab">Palabras Claves</a>
 	</li>
+	<li >
+		<a id='tools-evt' class="tab">Herramientas</a>
+	</li>
 	
 </ul>
 
@@ -78,6 +81,22 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 </script>
 </div>
 </div>
+
+
+<div id='toolsDiv'>
+<div id='tools' class="grid_4" style="display:none">
+
+<script type="text/javascript">
+
+swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
+		"tools", "1100", "560", "9.0.0", "expressInstall.swf",
+		{"data-file":'${resource(dir:'',file:'report/generateToolsChart')}'} );
+					
+
+</script>
+</div>
+</div>
+
 
 
 </div>
