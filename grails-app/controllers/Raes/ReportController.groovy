@@ -11,11 +11,11 @@ import jofc2.model.elements.FilledBarChart
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.hibernate.Hibernate
 
-import raes.KeyWord;
 import raes.Rae
-import raes.Tools;
+import raes.Tools
 import raes.University
 import raes.User
+import raes.Category
 class ReportController {
 
 	
@@ -132,36 +132,21 @@ class ReportController {
 	
 	def generateKeyWordsChart={
 		
-		def keyWordsLabels =[]
-		def keyWordsSeries =[]
+		def universities = Category.list()
 		
-		def sql = '''
-			select count(key_word_id) as counterValue , kw.name as kwName from `rae`.rae_key_words as rkw
-			inner join `rae`.key_word as kw on kw.id = rkw.key_word_id
-			group by rkw.key_word_id
-		'''
-		
-		def currentSession = sessionFactory.currentSession
-		def queryProfile =  currentSession.createSQLQuery(sql);
-		
-		queryProfile.addScalar("counterValue",Hibernate.INTEGER);
-		queryProfile.addScalar("kwName",Hibernate.STRING);
-		
-		def results = queryProfile.list();
-
-		results.each{
+		def universitySeries = []
+		def universityLabels = []
+		universities.each{
+			def number = Rae.countByCategory(it)
+			def percentage = (int)((number /Rae.count())*100)
 			
-			def number = it[0]
-			def percentage = (int)((number /KeyWord.count())*100)
+			universityLabels.add(it.name+"-"+percentage+"%" )
+			universitySeries.add(number)
 			
-			keyWordsLabels.add(it[1]+"-"+percentage+"%")
-			keyWordsSeries.add(it[0])
 		}
+		def universityChart = _buildChart("Categorias",[universitySeries], universityLabels,Rae.count())
 		
-		
-		def keyWordsChart = _buildChart("Palabras Claves",[keyWordsSeries], keyWordsLabels,Rae.count())
-		
-		render JSON.parse (keyWordsChart) as JSON
+		render JSON.parse (universityChart) as JSON
 		
 		
 		

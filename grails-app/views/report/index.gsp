@@ -13,7 +13,7 @@
 		<a id=' methodology-evt' class="tab">Metodologia</a>
 	</li>
 	<li >
-		<a id='keyword-evt' class="tab">Palabras Claves</a>
+		<a id='keyword-evt' class="tab">Categorias</a>
 	</li>
 	<li >
 		<a id='tools-evt' class="tab">Herramientas</a>
