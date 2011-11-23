@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rae2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.2100000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="208"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -29,41 +29,22 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="132" splitType="Stretch">
-			<frame>
-				<reportElement mode="Opaque" x="2" y="0" width="451" height="100" backcolor="#000000"/>
-				<textField>
-					<reportElement style="SubTitle" x="249" y="71" width="199" height="29"/>
-					<textElement markup="none">
-						<font fontName="Arial" size="12" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{year}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement style="Title" x="0" y="0" width="446" height="41"/>
-					<textElement markup="none">
-						<font fontName="Arial" size="24" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-				</textField>
-			</frame>
-			<frame>
-				<reportElement mode="Opaque" x="2" y="100" width="451" height="32" forecolor="#000000" backcolor="#CC0000"/>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement x="304" y="12" width="144" height="20" forecolor="#FFFFFF"/>
-					<textElement textAlignment="Right">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
-				</textField>
-			</frame>
+		<band height="97" splitType="Stretch">
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="67" y="71" width="173" height="29" forecolor="#CCCCCC" backcolor="#FFFFFF"/>
+				<reportElement mode="Transparent" x="0" y="52" width="187" height="29" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" mode="Transparent" x="0" y="0" width="553" height="41" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -114,7 +95,7 @@
 				</textElement>
 				<text><![CDATA[Numero Topografico]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="165" y="99" width="348" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
@@ -126,7 +107,7 @@
 				</textElement>
 				<text><![CDATA[Resultado]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="165" y="130" width="348" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
@@ -138,7 +119,7 @@
 				</textElement>
 				<text><![CDATA[Categoria]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="165" y="192" width="348" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
@@ -152,7 +133,7 @@
 			</staticText>
 			<textField>
 				<reportElement x="13" y="252" width="529" height="163"/>
-				<textElement/>
+				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -160,7 +141,7 @@
 				<textElement>
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Resumen]]></text>
+				<text><![CDATA[Resumen:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="13" y="161" width="141" height="20"/>
@@ -169,7 +150,7 @@
 				</textElement>
 				<text><![CDATA[Autores]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="165" y="161" width="348" height="20"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{authors}]]></textFieldExpression>
@@ -203,13 +184,6 @@
 						<font size="10" isBold="false"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-				</textField>
-				<textField pattern="EEEEE dd MMMMM yyyy">
-					<reportElement style="Column header" x="2" y="1" width="197" height="20" forecolor="#FFFFFF"/>
-					<textElement verticalAlignment="Middle">
-						<font size="10" isBold="false"/>
-					</textElement>
-					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

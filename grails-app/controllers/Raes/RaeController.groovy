@@ -382,6 +382,35 @@ class RaeController {
 		
 	}
 	
+	
+	def atributtesReport={
+		def report=[]
+		
+		def universities = University.list()
+		def categories = Category.list()
+		
+		
+	universities.each{
+		def tuple=[:]
+		tuple.putAt("un", "un")
+		tuple.putAt("universityName", it.name)
+		tuple.putAt("universityDescription", it.description)
+		report.add(tuple)
+		}
+	
+	
+	universities.each{
+		def tuple=[:]
+		tuple.putAt("at", "at")
+		tuple.putAt("categoryName", it.name)
+		tuple.putAt("categoryDescription", it.description)
+		report.add(tuple)
+		}
+	
+	chain(controller:'jasper',action:'index',model:[data:report],params:params)
+		
+	}
+	
 	def listUniversities={
 		def universities = University.list()
 		List finalData = new ArrayList ();

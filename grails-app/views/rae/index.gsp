@@ -12,6 +12,14 @@
 	<li >
 		<a class="tab"  id="AtTab">Atributos de Ficha</a>
 	</li>
+	<li>
+	<g:form name="reportForm" action="atributtesReport" >
+	<g:hiddenField name="_file" value="atributos.jrxml"/>
+	<g:hiddenField name="_format" value="PDF"/>
+	<a class="printAttr">Reporte de Atributos</a>	
+	</g:form>
+	
+	</li>
 	
 </ul>
 <div id="addRaeDiv" class="grid_16" style="margin-top:10px; display: none;">

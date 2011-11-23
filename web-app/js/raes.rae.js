@@ -16,8 +16,14 @@ $(document).ready(function(){
 	$(".container_16").delegate(".linkFile", "click", function(e) {
 	 window.location.href=$(this).attr('link')
 		
-	});	
-		
+	});
+	
+	
+	$(".container_16").delegate(".printAttr", "click", function(e) {
+		 $(this).parent().submit()
+			
+		});	
+			
 	
 	
 	
