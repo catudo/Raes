@@ -41,58 +41,7 @@
             <div id="main">
                 <div class="col" style="width: 400px; height: 419px">
                     <span lang="es-co">
-                    
-                    Donec arcu, convallis at pharetra</a>
-                    <br/>
-                    Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-                    Donec arcu, convallis at pharetra
-                </a>
-                <br/>
-                Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-                Donec arcu, convallis at pharetra
-                </a>
-                <br/>
-                Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-                Donec arcu, convallis at pharetra
-            </a>
-            <br/>
-            Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-            Donec arcu, convallis at pharetra
-            </a>
-            <br/>
-            Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-            Donec arcu, convallis at pharetra
-        </a>
-        <br/>
-        Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-        Donec arcu, convallis at pharetra
-        </a>
-        <br/>
-        Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-        Donec arcu, convallis at pharetra
-    </a>
-    <br/>
-    Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-    Donec arcu, convallis at pharetra
-    </a>
-    <br/>
-    Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-    Donec arcu, convallis at pharetra
-</a>
-<br/>
-Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-Donec arcu, convallis at pharetra
-</a>
-<br/>
-Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-Donec arcu, convallis at pharetra
-</a>
-<br/>
-Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
-Donec arcu, convallis at pharetra
-</a>
-<br/>
-Nunc in neque sem, a porta lacus. Pellentesque habitant morbi tristique senectus et netus et
+                
 </span>
 </div>
 

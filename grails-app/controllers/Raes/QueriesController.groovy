@@ -58,8 +58,8 @@ class QueriesController {
 					
 					join "University"
 				}
-				if(!params.topographicalNumber?.equals('')){	
-				eq('id',params.topographicalNumber)
+				if(params.topographicalNumber.isNumber()){	
+				eq('id',params.topographicalNumber.toLong())
 				}
 				if(params.year.isNumber()){
 				eq('year', params.year.toInteger())
@@ -71,7 +71,7 @@ class QueriesController {
 					}
 					join 'Category'
 				}
-				
+				if(!(params.name.equals('')))
 				eq('name', params.name)
 				
 			}
@@ -85,14 +85,16 @@ class QueriesController {
 		
 		if(!(params.authors.equals(''))){
 			def authors = Author.findByName(params.authors)
-			def raesAuthor = authors.raes
+			def raesAuthor = authors?.raes
+			if(raesAuthor)
 			raes.addAll(raesAuthor)
 			
 		}
 		
 		if(!(params.keyWords.equals(''))){
 			def keyWords = KeyWord.findByName(params.keyWords)
-			def raesKeyWords = keyWords.raes
+			def raesKeyWords = keyWords?.raes
+			if(raesKeyWords)
 			raes.addAll(raesKeyWords)
 			
 		}
