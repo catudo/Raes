@@ -19,6 +19,8 @@ class Rae {
 		keyWords nullable:true
 		category nullable:true
 		university nullable:true
+		
+		
     }
 	
 	static mapping = {

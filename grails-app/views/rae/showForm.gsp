@@ -51,7 +51,7 @@
 						<label>Herramientas</label>
 						<g:textField class="raeText" name="tool"/>
 						<br>
-						</br><a class="button evt-addKTool" href="#">Agregar Herramienta</a>
+						</br><a class="button evt-addTool" href="#">Agregar Herramienta</a>
 					</p>
 					
 					
@@ -77,7 +77,15 @@
 					</p>
 					<p>
 						<label>Año</label>
-						<g:datePicker name="year"  value="${new Date()}" precision="year" years="${1900..2100}"/>
+							<% def currentYear = new Date().getYear()+1900	
+								def years = []
+									
+									for(int i = 2005; i<=2100; i++)
+									years.add(i)
+									
+									%>
+									<br>
+									<g:select  name="year"  value=''  from="${years}"  />
 					</p>
 					
 					<input  class="evt-properties confirm button" type="submit" value="Almacenar" >

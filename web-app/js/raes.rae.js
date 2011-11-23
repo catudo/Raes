@@ -323,7 +323,7 @@ function addAuthorAndKeyWords(){
 	})
 	
 	
-	$("#raeFormDiv").delegate(".evt-evt-addKTool", "click", function(e) {
+	$("#raeFormDiv").delegate(".evt-addTool", "click", function(e) {
 		e.preventDefault()
 		$(this).before('<p><input type="text" value="" id="tool" name="tool" class="text raeText"></p>')
 	
@@ -364,7 +364,7 @@ function showRae(){
 				//clear("#raeForm")
 				$("#raeId").val(raeId)
 				for (var field in response) {
-					if (field != "author" && field !="keyWords") {
+					if (field != "author" && field !="keyWords" && field !="tools") {
 						
 						if(field !="name"){
 						var tag = $("#"+field)
@@ -390,6 +390,23 @@ function showRae(){
 								
 							}
 						}
+						
+					}else if(field=='tools'){
+						
+						var tools = response[field]
+						
+						for (var i = 0; i < tools.length; i++) {
+							if (i == 0) {
+								$("#tool").val(tools[i])
+							}
+							else {
+								if(i<tools.length)
+								$(".evt-addTool").before('<p><input type="text" value="' + tools[i] + '" id="tool" name="tool" class="text"></p>')
+								
+							}
+						}
+	
+						
 						
 					}
 					else {

@@ -9,6 +9,7 @@ import raes.Author
 import raes.Category
 import raes.KeyWord
 import raes.Rae
+import raes.Tools;
 import raes.University
 import raes.User
 class RaeController {
@@ -98,7 +99,7 @@ class RaeController {
 	def saveRae ={
 		
 		def raeId =params.raeId
-		def properties =[year:params.year_year,
+		def properties =[year:params.year,
 					summary:params.summary,
 					methodology:params.methodology,
 					result:params.result,
@@ -149,10 +150,10 @@ class RaeController {
 		
 		def tools = []
 		toolsNames.each{toolName->
-			def toolInstace = KeyWord.findByName(toolName)
+			def toolInstace = Tools.findByName(toolName)
 
 			if(toolInstace==null){
-				toolInstace = new KeyWord(name:toolName)
+				toolInstace = new Tools(name:toolName)
 				if(!toolName.equals(""))
 				toolInstace.save(flush:true)
 			}
@@ -323,6 +324,20 @@ class RaeController {
 		
 		
 		raeObject.putAt("keyWords", keyWordsList)
+		
+		
+		
+		def tools = rae.tools
+		
+		def toolsList =[]
+		
+		tools.each{
+			toolsList.add(it.name)
+		}
+		
+		
+		
+		raeObject.putAt("tools", toolsList)
 		
 		render raeObject as JSON
 		
