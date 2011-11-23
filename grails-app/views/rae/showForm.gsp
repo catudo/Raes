@@ -46,6 +46,15 @@
 						<br>
 						</br><a class="button evt-addKeyWords" href="#">Agregar Palabra Clave</a>
 					</p>
+					
+					<p>
+						<label>Herramientas</label>
+						<g:textField class="raeText" name="tool"/>
+						<br>
+						</br><a class="button evt-addKTool" href="#">Agregar Herramienta</a>
+					</p>
+					
+					
 					<p>
 						<label>Universidad</label>
 						<g:select name="university" noSelection="${[null:'']}" class="raeText" optionKey="id" from="${universities}"/>

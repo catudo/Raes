@@ -12,7 +12,7 @@ class Rae {
 	String name
 	String analyst
 	static belongsTo =[university:University,category:Category]
-	static hasMany = [authors:Author,keyWords:KeyWord]
+	static hasMany = [authors:Author,keyWords:KeyWord,tools:Tools]
 	//categories:Category
     static constraints = {
 		authors nullable:true

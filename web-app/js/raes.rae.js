@@ -322,6 +322,14 @@ function addAuthorAndKeyWords(){
 	
 	})
 	
+	
+	$("#raeFormDiv").delegate(".evt-evt-addKTool", "click", function(e) {
+		e.preventDefault()
+		$(this).before('<p><input type="text" value="" id="tool" name="tool" class="text raeText"></p>')
+	
+	
+	})
+	
 }
 
 

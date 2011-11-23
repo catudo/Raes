@@ -145,6 +145,22 @@ class RaeController {
 		properties.put("keyWords", keyWords)
 		
 		
+		def toolsNames = request.getParameterValues("tool");
+		
+		def tools = []
+		toolsNames.each{toolName->
+			def toolInstace = KeyWord.findByName(toolName)
+
+			if(toolInstace==null){
+				toolInstace = new KeyWord(name:toolName)
+				if(!toolName.equals(""))
+				toolInstace.save(flush:true)
+			}
+
+			tools.add(toolInstace)
+		}
+
+		properties.put("tools", tools)
 
 		def rae
 
