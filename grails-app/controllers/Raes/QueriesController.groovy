@@ -45,34 +45,22 @@ class QueriesController {
 			"keyWords",
 			"university",
 		]
-		
-		
-
-		
-		
-		
-	
-		
-		
-		
-		
-		
+				
 		
 		List finalData = new ArrayList ();
 		def columns = [
-			[ "sTitle": "Ficha" ],
+			
 			[ "sTitle": "Nombre" ],
-			["sTitle": "Metodologia" ],
-			["sTitle": "A&ntilde;o" ],
-			[ "sTitle": "Resultado" ],
-			[ "sTitle": "Numero Topografico" ],
-			[ "sTitle": "Ciudad"],
-			[ "sTitle": "Analista"],
-			[ "sTitle": "Universidad"],
-			[ "sTitle": "Palabras Claves"],
-			[ "sTitle": "Categoria"],
 			["sTitle": "Autores" ],
+			[ "sTitle": "Universidad"],
+			["sTitle": "A&ntilde;o" ],
+			//ficha
+			[ "sTitle": "" ],
+			//descripcion
 			[ "sTitle": ""],
+		
+			//imprimir
+			[ "sTitle": ""]
 
 
 		];
@@ -84,25 +72,22 @@ class QueriesController {
 		
 		raes.each{rae->
 			def row=[]
+			row.add(rae.name)
+			row.add(rae.authors.join(","))
+			row.add(rae.university?.name)
+			row.add(rae.year)
 			
 			def file = new File("${servletContext.getRealPath('/raeTemp')}/"+"rae-"+rae.id+"-"+rae.year+".docx")
 			
 			if(!file.exists())
-			row.add("rae-"+rae.id+"-"+rae.year)
+			row.add("No hay Ficha Asociada")
 			else
-			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"rae-"+rae.id+"-"+rae.year +'</a>')	
-			row.add(rae.name)
-			row.add(rae.methodology)
-			row.add(rae.year)
-			row.add(rae.result)
-			row.add(rae.topographicalNumber)
-			row.add(rae.city)
-			row.add(rae.analyst)
-			row.add(rae.university?.name)
-			row.add(rae.keyWords.join(","))
-			row.add(rae.category?.name)
-			row.add(rae.authors.join(","))
+			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"Ficha"+'</a>')	
+			
+			row.add("<a href='#' class='showAbstract' raeId='"+rae.id+"'>Abstract</>")
 			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))
+			
+			
 			finalData.add(row)
 			
 		}
@@ -200,7 +185,11 @@ or tool.name = 'ooo'
 	}
 	
 	
-	
+	def showAbstract={
+		def rae = Rae.get(params.raeId)	
+		[summary: rae.summary]
+		
+	}
 	
 	def generatePdf={
 		chain(controller:'rae',action:'generatePdf',params:params)

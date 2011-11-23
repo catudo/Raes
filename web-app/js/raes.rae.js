@@ -11,6 +11,7 @@ $(document).ready(function(){
 	listUniversities()
 	deleteProperty()
 	cancelForm()
+	
 
 	$(".container_16").delegate(".linkFile", "click", function(e) {
 	 window.location.href=$(this).attr('link')
@@ -130,7 +131,7 @@ function listRaes(){
 		
 		success : function(response) {
 			buildTable(response)	
-
+			
 		}
 	});
 }
@@ -268,7 +269,7 @@ function buildTable(response) {
 		"aaData" : data,
 		"aoColumns" : col,
 		"bJQueryUI" : true,
-		//"bAutoWidth": true,
+		"bAutoWidth": true,
 		"aaSorting" : [[1, "asc"]],
 		//"sScrollY": "466px",
 		"oLanguage" : {
@@ -298,6 +299,7 @@ function buildTable(response) {
 
 		}
 	});
+	
 
 }
 
@@ -467,5 +469,10 @@ function getForm(){
 
 		}
 	});
+}
+
+
+	
+	
 }
 

@@ -88,4 +88,9 @@
 <div id="raeDiv">
 
 </div>
+
+<div id="showAbstractDiv" class="grid_16" style='width: 100%'>
+
+</div>
+
 </div>

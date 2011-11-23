@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	showAbstract()
 	listRaes()
 	$(".content").delegate(".linkFile", "click", function(e) {
 		 window.location.href=$(this).attr('link')
@@ -8,8 +8,30 @@ $(document).ready(function(){
 
 });
 
-
-
+function showAbstract(){
+	$(".content").delegate('.showAbstract', "click", function(e){
+		e.preventDefault();
+		var raeID = $(this).attr('raeId')
+		var params={}
+		
+		params['raeId'] = raeID
+		
+		$.ajax({
+		type : "POST",
+		data:params,
+		url : webroot + "/queries/"+"showAbstract",
+		success : function(response) {
+			
+			$("#showAbstractDiv").html('')
+			$("#showAbstractDiv").html(response)
+			
+			
+		
+		}	
+		
+	});
+	});
+}
 
 function listRaes(){
 	$("#divForm").delegate('.button', "click", function(event) {

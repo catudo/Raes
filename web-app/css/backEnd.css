@@ -8,7 +8,7 @@ table {
   font: normal 11px helvetica, verdana, arial, sans-serif;
   background-image: url(http://www.acuity.com.br/extern/icant.co.uk/bg_acuity.gif); 
   background-repeat: repeat;
-   
+  width:100%; 
   
 border-spacing: 1px;
   }
