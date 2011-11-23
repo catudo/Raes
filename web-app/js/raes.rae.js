@@ -10,6 +10,7 @@ $(document).ready(function(){
 	listCategories()
 	listUniversities()
 	deleteProperty()
+	cancelForm()
 
 	$(".container_16").delegate(".linkFile", "click", function(e) {
 	 window.location.href=$(this).attr('link')
@@ -120,12 +121,7 @@ function displayDivs(){
 }
 
 
-function assignDocumentWithRae(){
-	
-	
-	
-	
-}
+
 
 function listRaes(){
 	$.ajax({
@@ -427,11 +423,22 @@ function showRae(){
 					
 					
 				}
+				$('#year').attr('disabled','disabled')
 				$("#saveTab").click()
 				
 			}
 		});
 	});
+}
+
+function cancelForm(){
+	$("#raeFormDiv").delegate('#cancelEdition', "click", function(e){
+	e.preventDefault()
+	$('#year').attr('disabled',false)
+	clear('#raeForm')
+	
+	});
+	
 }
 
 function getForm(){

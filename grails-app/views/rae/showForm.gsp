@@ -89,6 +89,9 @@
 					</p>
 					
 					<input  class="evt-properties confirm button" type="submit" value="Almacenar" >
+					<input id='cancelEdition'  class="confirm button" type="submit" value="Cancelar" >
+					
+					
 				</fieldset>
 			</form>
 		</div>

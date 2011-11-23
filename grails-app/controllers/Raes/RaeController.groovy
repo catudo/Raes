@@ -99,7 +99,7 @@ class RaeController {
 	def saveRae ={
 		
 		def raeId =params.raeId
-		def properties =[year:params.year,
+		def properties =[
 					summary:params.summary,
 					methodology:params.methodology,
 					result:params.result,
@@ -163,12 +163,14 @@ class RaeController {
 
 		properties.put("tools", tools)
 
-		def rae
-
-		if(raeId.equals("")){
+		def rae = Rae.get(raeId)
+		
+		
+		if(rae==null){
+			properties.putAt('year', params.year)
 			rae = new Rae(properties)
 		}else{
-			rae = Rae.get(raeId)
+		properties.putAt('year', rae.year)
 			properties.each{key, value ->
 				if(key.equals('year'))
 				rae.putAt(key, value.toInteger())
