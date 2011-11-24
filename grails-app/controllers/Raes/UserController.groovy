@@ -202,6 +202,7 @@ class UserController {
         def userInstance = User.get(params.id)
 		
 		def userRoles = UserRole.findAllByUser(userInstance)
+		userRoles*.delete(flush:true)
         if (userInstance) {
             try {
                 userInstance.delete(flush: true)
