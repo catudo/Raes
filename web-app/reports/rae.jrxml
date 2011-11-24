@@ -29,137 +29,139 @@
 	<background>
 		<band splitType="Stretch"/>
 	</background>
-	<title>
-		<band height="97" splitType="Stretch">
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement mode="Transparent" x="0" y="52" width="187" height="29" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Title" mode="Transparent" x="0" y="0" width="553" height="41" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="14" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="327" y="52" width="134" height="29"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-			</textField>
-		</band>
-	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
 	</pageHeader>
-	<columnHeader>
-		<band height="26" splitType="Stretch"/>
-	</columnHeader>
 	<detail>
 		<band height="426" splitType="Stretch">
 			<staticText>
-				<reportElement x="13" y="14" width="141" height="18"/>
+				<reportElement x="13" y="40" width="141" height="18"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Analista]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Transparent" x="165" y="14" width="348" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+				<reportElement mode="Transparent" x="13" y="58" width="348" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{analyst}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="165" y="42" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="13" y="96" width="348" height="20"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{methodology}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="42" width="141" height="20"/>
+				<reportElement x="13" y="76" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Metodologia]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="165" y="68" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{topographicalNumber}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="13" y="68" width="141" height="20"/>
-				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Numero Topografico]]></text>
-			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="165" y="99" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="13" y="136" width="348" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="99" width="141" height="20"/>
+				<reportElement x="13" y="116" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Resultado]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="165" y="130" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="13" y="176" width="348" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="130" width="141" height="20"/>
+				<reportElement x="13" y="156" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Categoria]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="165" y="192" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="13" y="256" width="348" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="192" width="141" height="20"/>
+				<reportElement x="13" y="236" width="141" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Universidad]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="13" y="252" width="529" height="163"/>
+				<reportElement x="13" y="353" width="529" height="62"/>
 				<textElement textAlignment="Justified"/>
 				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="13" y="222" width="141" height="20"/>
+				<reportElement x="13" y="318" width="141" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Resumen:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="161" width="141" height="20"/>
+				<reportElement x="13" y="196" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="14" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Autores]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="165" y="161" width="348" height="20"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="13" y="216" width="348" height="20"/>
+				<textElement/>
 				<textFieldExpression><![CDATA[$F{authors}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Title" mode="Transparent" x="13" y="18" width="348" height="22" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="13" y="296" width="348" height="22" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="276" width="141" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ciudad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="0" width="141" height="18"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="413" y="0" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="603" y="18" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
