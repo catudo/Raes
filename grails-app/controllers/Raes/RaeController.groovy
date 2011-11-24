@@ -399,7 +399,7 @@ class RaeController {
 		}
 	
 	
-	universities.each{
+	categories.each{
 		def tuple=[:]
 		tuple.putAt("at", "at")
 		tuple.putAt("categoryName", it.name)
