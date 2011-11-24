@@ -360,6 +360,8 @@ function showRae(){
 	$("#listRaeDiv").delegate('.editRae', "click", function(){
 		getForm()
 		var raeId = $(this).attr("raeId")
+		setTimeout(function(){
+		
 		var params = {}
 		params["raeId"] = raeId
 		$.ajax({
@@ -367,7 +369,9 @@ function showRae(){
 			url: webroot + "/rae/showRae",
 			data: params,
 			success: function(response){
-				//clear("#raeForm")
+				
+				clear("#raeForm")
+				
 				$("#raeId").val(raeId)
 				for (var field in response) {
 					if (field != "author" && field !="keyWords" && field !="tools") {
@@ -438,6 +442,7 @@ function showRae(){
 				
 			}
 		});
+		},500);
 	});
 }
 

@@ -340,6 +340,9 @@ class RaeController {
 		
 		
 		raeObject.putAt("tools", toolsList)
+		raeObject.putAt("university", rae.university.id)
+		raeObject.putAt("category", rae.category.id)
+		
 		
 		render raeObject as JSON
 		
