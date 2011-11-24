@@ -218,7 +218,7 @@ class ReportController {
 		yAxis.setColour("#FFFFFF")
 		yAxis.setMax(top)
 		yAxis.setMin(0)
-		yAxis.setSteps(1)
+		yAxis.setSteps(5)
 		xAxis.setGridColour("#C0C0C0")
 		xAxis.setColour("#C0C0C0")
 		xAxis.setLabels( labels)
