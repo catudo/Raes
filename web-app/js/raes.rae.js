@@ -76,6 +76,7 @@ function saveProperties(){
 							listCategories()
 							listUniversities()
 							listRaes()
+							getForm()
 						
 			}	
 					
