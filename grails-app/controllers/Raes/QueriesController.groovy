@@ -82,7 +82,7 @@ class QueriesController {
 			if(!file.exists())
 			row.add("No hay Ficha Asociada")
 			else
-			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"Ficha"+'</a>')	
+			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"RAE"+'</a>')	
 			
 			row.add("<a href='#' class='showAbstract' raeId='"+rae.id+"'>Abstract</>")
 			row.add(g.render(template: '/rae/importPdf',model:[raeId:rae.id]))

@@ -262,10 +262,16 @@ class RaeController {
 	
 	def deleteRae={
 		def rae = Rae.get(params.raeId)
+		try{
 		rae.authors = null
 		rae.keyWords = null
+		rae.tools = null
 		rae.save(flush:true)
 		rae.delete(flush:true)
+		}catch(Exception e){
+		render rae as JSON
+		}
+		
 		render rae as JSON
 		
 	}
@@ -340,8 +346,8 @@ class RaeController {
 		
 		
 		raeObject.putAt("tools", toolsList)
-		raeObject.putAt("university", rae.university.id)
-		raeObject.putAt("category", rae.category.id)
+		raeObject.putAt("university", rae.university?.id)
+		raeObject.putAt("category", rae.category?.id)
 		
 		
 		render raeObject as JSON
