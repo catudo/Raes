@@ -202,6 +202,11 @@ class UserController {
         def userInstance = User.get(params.id)
 		
 		def userRoles = UserRole.findAllByUser(userInstance)
+		def accessLogs = AccessLog.findAllByUser(userInstance) 
+		
+		Event.list()*.delete(flush:true)
+		accessLogs*.delete(flush:true)
+			
 		userRoles*.delete(flush:true)
         if (userInstance) {
             try {
