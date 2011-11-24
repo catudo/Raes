@@ -369,12 +369,13 @@ class RaeController {
 		
 		properties.each{property->
 			raeHash.putAt(property, rae.getAt(property))
+			
 		}
 		def auth =  rae.authors.join(",")
 		raeHash.putAt("authors", auth)
 		raeHash.putAt("category", rae.category?.name)
 		raeHash.putAt("university", rae.university?.name)
-		
+		raeHash.putAt("id", "Rae-"+rae.id+"-"+rae.year)
 		
 		report.add(raeHash)
 		
