@@ -49,6 +49,8 @@ function listRaes(){
 		success : function(response) {
 			buildTable(response)
 			clear("#queryForm")
+			$('#showAbstractDiv').html('')
+			
 
 		}
 	});

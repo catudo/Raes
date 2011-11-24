@@ -358,6 +358,7 @@ function deleteAuthor(){
 
 function showRae(){
 	$("#listRaeDiv").delegate('.editRae', "click", function(){
+		getForm()
 		var raeId = $(this).attr("raeId")
 		var params = {}
 		params["raeId"] = raeId
