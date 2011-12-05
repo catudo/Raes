@@ -53,13 +53,47 @@ class ReportController {
 			def number = Rae.countByUniversity(it)
 			def percentage = (int)((number /Rae.count())*100)
 			
-			universityLabels.add(it.name+"-"+percentage+"%" )
+			def name = it.name.split(" ")
+			 
+			def finalName = ""
+			
+			name.each{
+				def chartArray = it.toCharArray()
+				if(chartArray.size()>0)
+				finalName = finalName+chartArray[0]
+			}
+			
+			
+			universityLabels.add(finalName+"-"+percentage+"%" )
 			universitySeries.add(number)
 			
 		}
 		def universityChart = _buildChart("Universidades",[universitySeries], universityLabels,Rae.count())
 		
 		render JSON.parse (universityChart) as JSON
+	}
+	
+	
+	def universitiesLabels={
+		def universities = University.list()
+		def universityLabelslist =[]
+		universities.each{
+			
+			def name = it.name.split(" ")
+			 
+			def finalName = ""
+			
+			name.each{
+				def chartArray = it.toCharArray()
+				if(chartArray.size()>0)
+				finalName = finalName+chartArray[0]
+			}
+			
+			
+			universityLabelslist.add(finalName+"-"+it.name)
+		}
+		[universitiesLabels:universityLabelslist]
+		
 	}
 	
 	def generateYearsChart={
@@ -114,8 +148,19 @@ class ReportController {
 				
 				def number = Rae.countByMethodology(it.methodology)
 				def percentage = (int)((number /Rae.count())*100)
+				
+				def name = it.methodology.toString().split(" ")
+				
+			   def finalName = ""
+			   
+			   name.each{
+				   def chartArray = it.toCharArray()
+				   if(chartArray.size()>0)
+				   finalName = finalName+chartArray[0]
+			   }
+			   
 			
-				methodologyLabels.add(it.methodology+"-"+percentage+"%")
+				methodologyLabels.add(finalName+"-"+percentage+"%")
 				methodologySeries.add(number)
 				flag.add(it.methodology)
 			}
@@ -129,6 +174,37 @@ class ReportController {
 		render JSON.parse (methodologyChart) as JSON
 		
 	}
+	def generateMethodologyLabels={
+		
+		
+		def methodologies =Rae.createCriteria().list{
+			
+			order('year',"ASC")
+		}
+		
+		
+		def methodologyLabels =[]
+		methodologies.unique{it.methodology}.each{
+			
+			
+			def name = it.methodology.toString().split(" ")
+			
+		   def finalName = ""
+		   
+		   name.each{
+			   def chartArray = it.toCharArray()
+			   if(chartArray.size()>0)
+			   finalName = finalName+chartArray[0]
+		   }
+		   
+		   if(!(it.methodology.toString().equals("")))
+			methodologyLabels.add(finalName+"-"+it.methodology.toString())
+			
+		}
+		
+		[methodologyLabels:methodologyLabels]
+	
+	}
 	
 	def generateKeyWordsChart={
 		
@@ -140,7 +216,19 @@ class ReportController {
 			def number = Rae.countByCategory(it)
 			def percentage = (int)((number /Rae.count())*100)
 			
-			universityLabels.add(it.name+"-"+percentage+"%" )
+			
+			
+			def name = it.name.toString().split(" ")
+			
+		   def finalName = ""
+		   
+		   name.each{
+			   def chartArray = it.toCharArray()
+			   if(chartArray.size()>0)
+			   finalName = finalName+chartArray[0]
+		   }
+		   	
+			universityLabels.add(finalName+"-"+percentage+"%" )
 			universitySeries.add(number)
 			
 		}
@@ -148,6 +236,30 @@ class ReportController {
 		
 		render JSON.parse (universityChart) as JSON
 		
+		
+		
+	}
+	
+	def categoriesList={
+		def categories = Category.list()
+		
+		def categoriesLabelslist =[]
+		categories.each{
+			
+			def name = it.name.split(" ")
+			 
+			def finalName = ""
+			
+			name.each{
+				def chartArray = it.toCharArray()
+				if(chartArray.size()>0)
+				finalName = finalName+chartArray[0]
+			}
+			
+			
+			categoriesLabelslist.add(finalName+"-"+it.name)
+		}
+		[categoriesLabels:categoriesLabelslist]
 		
 		
 	}
@@ -178,7 +290,19 @@ class ReportController {
 			def number = it[0]
 			def percentage = (int)((number /Tools.count())*100)
 			
-			keyWordsLabels.add(it[1]+"-"+percentage+"%")
+			def name = it[1].split(" ")
+			
+		   def finalName = ""
+		   
+		   name.each{
+			   def chartArray = it.toCharArray()
+			   if(chartArray.size()>0)
+			   finalName = finalName+chartArray[0]
+		   }
+			
+			
+			
+			keyWordsLabels.add(finalName)
 			keyWordsSeries.add(it[0])
 		}
 		
@@ -190,6 +314,31 @@ class ReportController {
 		
 		
 	}
+	
+	
+	def generateToolsNamesChart={
+		
+		def toolsNames = Tools.list()
+		def keyWordsLabels =[] 
+		toolsNames.each {
+			
+			def name = it.name.split(" ")
+			
+		   def finalName = ""
+		   
+		   name.each{
+			   def chartArray = it.toCharArray()
+			   if(chartArray.size()>0)
+			   finalName = finalName+chartArray[0]
+		   }
+			
+			keyWordsLabels.add(finalName+"-"+it.name)
+			
+		}
+		[keyWordsLabels:keyWordsLabels]
+		
+	}
+	
 	
 	
 	

@@ -5,6 +5,8 @@ $(document).ready(function(){
 		 window.location.href=$(this).attr('link')
 			
 		});	
+	
+	hideAbstract()
 
 });
 
@@ -24,6 +26,8 @@ function showAbstract(){
 			
 			$("#showAbstractDiv").html('')
 			$("#showAbstractDiv").html(response)
+			$("#raeDiv").slideUp()
+			$("#showAbstractDiv").slideDown()
 			
 			
 		
@@ -32,6 +36,18 @@ function showAbstract(){
 	});
 	});
 }
+
+function hideAbstract(){
+$(".content").delegate('.close', "click", function(e){
+
+		$("#showAbstractDiv").slideUp()
+		$("#raeDiv").slideDown()
+		
+
+});
+}
+
+
 
 function listRaes(){
 	$("#divForm").delegate('.button', "click", function(event) {

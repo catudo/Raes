@@ -37,6 +37,10 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 
 </script>
 </div>
+
+<div id="universitiesLabels">
+
+</div>
 </div>
 
 
@@ -66,6 +70,9 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 
 </script>
 </div>
+
+<div id="methodologyLabels"></div>
+
 </div>
 
 <div id='keywordDiv'>
@@ -76,10 +83,18 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 		"keywords", "1100", "560", "9.0.0", "expressInstall.swf",
 		{"data-file":'${resource(dir:'',file:'report/generateKeyWordsChart')}'} );
-					
+
+
+	
 
 </script>
 </div>
+
+<div id='categoriesList'>
+
+
+</div>
+
 </div>
 
 
@@ -94,6 +109,9 @@ swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
 					
 
 </script>
+</div>
+
+<div id='labelsTools'>
 </div>
 </div>
 

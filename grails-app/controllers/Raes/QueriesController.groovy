@@ -129,7 +129,7 @@ or tool.name = 'ooo'
 		def where =''
 		def joinSql=''
 		
-		where =" where rae.name = '"+params.name +"'" 
+		where =" where rae.name like '"+params.name +"'" 
 		
 		if(params.university.isNumber()){
 		where = where +''' or rae.university_id ='''+params.university
@@ -158,12 +158,12 @@ or tool.name = 'ooo'
 		
 		if(!(params.authors.equals(''))){
 			joinSql=joinSql+' inner join rae.rae_authors as raeAuthor on(raeAuthor.rae_id = rae.id) inner join rae.author as author on (author.id= raeAuthor.author_id )'
-			where = where +''' or author.name="'''+params.authors+'''"'''
+			where = where +''' or author.name like "%'''+params.authors+'''%"'''
 		}
 		
 		if(!(params.tool.equals(''))){
 			joinSql=joinSql+' inner join rae.rae_tools as raeTools on(raeTools.rae_id = rae.id)inner join rae.tools as tool on (tool.id= raeTools.tools_id )'
-			where = where +''' or tool.name="'''+params.tool+'''"'''
+			where = where +''' or tool.name like "%'''+params.tool+'''%"'''
 		}
 		
 		

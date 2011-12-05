@@ -13,6 +13,55 @@ $(document).ready(function() {
 		
 	})
 	
+	$.ajax({
+		type : "POST",
+		url : webroot + "/report/generateToolsNamesChart",
+	
+		success : function(response) {
+		$('#labelsTools').html(response)
+		}	
+				
+		
+		});
+	
+	
+	$.ajax({
+		type : "POST",
+		url : webroot + "/report/generateMethodologyLabels",
+	
+		success : function(response) {
+		$('#methodologyLabels').html(response)
+		}	
+				
+		
+		});
+	
+	$.ajax({
+		type : "POST",
+		url : webroot + "/report/universitiesLabels",
+	
+		success : function(response) {
+		$('#universitiesLabels').html(response)
+		}	
+				
+		
+		});
+	
+	
+	
+	$.ajax({
+		type : "POST",
+		url : webroot + "/report/categoriesList",
+	
+		success : function(response) {
+		$('#categoriesList').html(response)
+		}	
+				
+		
+		});
+	
+	
+	
 	
 });
 

@@ -1,3 +1,5 @@
+var data_table
+var table
 $(document).ready(function(){
 
 	saveProperties()
@@ -124,6 +126,13 @@ function displayDivs(){
 			
 		}
 		
+		data_table.fnDraw();
+		var oTable = $('#categoryTable').dataTable();
+	    oTable.fnDraw();
+		
+		
+	    var oTable2 = $('#universityTable').dataTable();
+	    oTable2.fnDraw();
 		
 	})
 }
@@ -218,7 +227,7 @@ function buildPropertiesTable(response,type){
 	var data = response.data;
 	var col = response.columns;
 
-	var table
+	
 	if(type=='listUniversities'){
 		$('#universityListDiv').html("<table style='width:100%;'  id='universityTable' ></table>");
 		table =$('#universityTable')
@@ -233,7 +242,7 @@ function buildPropertiesTable(response,type){
 		"bJQueryUI" : true,
 		//"bAutoWidth": true,
 		"aaSorting" : [[1, "asc"]],
-		//"sScrollY": "466px",
+		"sScrollY": "512px",
 		"oLanguage" : {
 			"sProcessing" : "Procesando",
 			"sLengthMenu" : "Cantidad",
@@ -258,7 +267,7 @@ function buildPropertiesTable(response,type){
 		"iDisplayLength" : -1,
 		"aLengthMenu" : [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
 		"fnInitComplete" : function() {
-
+			
 		}
 	});
 	
@@ -274,11 +283,12 @@ function buildTable(response) {
 	$('#raeDiv').html('<table id="rae_table" ></table>');
 	data_table = $('#rae_table').dataTable({
 		"aaData" : data,
+	    "bFilter": true,
 		"aoColumns" : col,
 		"bJQueryUI" : true,
 		"bAutoWidth": true,
 		"aaSorting" : [[1, "asc"]],
-		//"sScrollY": "466px",
+		"sScrollY": "500px",
 		"oLanguage" : {
 			"sProcessing" : "Procesando",
 			"sLengthMenu" : "Cantidad",

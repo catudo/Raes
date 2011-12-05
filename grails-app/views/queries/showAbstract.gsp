@@ -4,4 +4,7 @@
 <p>
 ${summary} 
 </p>
+
+<input type="submit" class="close"  value="Cerrar">
+
 </fieldset>
