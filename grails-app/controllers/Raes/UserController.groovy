@@ -164,6 +164,14 @@ class UserController {
 	def deleteUser={
 		def userInstance = User.get(params.userId)
 		
+		def userRoles = UserRole.findAllByUser(userInstance)
+		def accessLogs = AccessLog.findAllByUser(userInstance)
+		
+		Event.list()*.delete(flush:true)
+		accessLogs*.delete(flush:true)
+			
+		userRoles*.delete(flush:true)
+		
 		userInstance.delete(flush:true)
 		
 		
