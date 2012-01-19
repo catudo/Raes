@@ -1,21 +1,20 @@
 package Raes
 import grails.converters.JSON
-
-import grails.converters.JSON
 import jofc2.OFC
 import jofc2.model.Chart
 import jofc2.model.axis.XAxis
 import jofc2.model.axis.YAxis
-import jofc2.model.elements.FilledBarChart
+import jofc2.model.elements.BarChart.Bar;
+import jofc2.model.elements.HorizontalBarChart
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.hibernate.Hibernate
 
+import raes.Category
 import raes.Rae
 import raes.Tools
 import raes.University
 import raes.User
-import raes.Category
 class ReportController {
 
 	
@@ -53,48 +52,22 @@ class ReportController {
 			def number = Rae.countByUniversity(it)
 			def percentage = (int)((number /Rae.count())*100)
 			
-			def name = it.name.split(" ")
-			 
-			def finalName = ""
 			
-			name.each{
-				def chartArray = it.toCharArray()
-				if(chartArray.size()>0)
-				finalName = finalName+chartArray[0]
-			}
-			
-			
-			universityLabels.add(finalName+"-"+percentage+"%" )
+			universityLabels.add(it.name+"-"+percentage+"%" )
 			universitySeries.add(number)
 			
 		}
-		def universityChart = _buildChart("Universidades",[universitySeries], universityLabels,Rae.count())
 		
-		render JSON.parse (universityChart) as JSON
+		//def universityChart = _buildChart("Universidades",[universitySeries], universityLabels,Rae.count())
+		
+		def chartResponse=[universitySeries:universitySeries,universityLabels:universityLabels]
+		
+		
+		render chartResponse as JSON
 	}
 	
 	
-	def universitiesLabels={
-		def universities = University.list()
-		def universityLabelslist =[]
-		universities.each{
-			
-			def name = it.name.split(" ")
-			 
-			def finalName = ""
-			
-			name.each{
-				def chartArray = it.toCharArray()
-				if(chartArray.size()>0)
-				finalName = finalName+chartArray[0]
-			}
-			
-			
-			universityLabelslist.add(finalName+"-"+it.name)
-		}
-		[universitiesLabels:universityLabelslist]
-		
-	}
+
 	
 	def generateYearsChart={
 		
@@ -122,9 +95,10 @@ class ReportController {
 			
 		}
 		
-		def yearsChart = _buildChart("Tiempo",[yearsSeries], yearsLabels,Rae.count())
+		def yearsResponse =[yearsSeries:yearsSeries,yearsLabels:yearsLabels]
 		
-		render JSON.parse (yearsChart) as JSON
+		
+		render yearsResponse as JSON
 		
 		
 	}
@@ -149,18 +123,11 @@ class ReportController {
 				def number = Rae.countByMethodology(it.methodology)
 				def percentage = (int)((number /Rae.count())*100)
 				
-				def name = it.methodology.toString().split(" ")
+				def name = it.methodology.toString()
 				
 			   def finalName = ""
 			   
-			   name.each{
-				   def chartArray = it.toCharArray()
-				   if(chartArray.size()>0)
-				   finalName = finalName+chartArray[0]
-			   }
-			   
-			
-				methodologyLabels.add(finalName+"-"+percentage+"%")
+				methodologyLabels.add(name+"-"+percentage+"%")
 				methodologySeries.add(number)
 				flag.add(it.methodology)
 			}
@@ -168,10 +135,9 @@ class ReportController {
 		}
 		
 	
-		def methodologyChart = _buildChart("Metodologias",[methodologySeries], methodologyLabels,Rae.count())
-		
-		
-		render JSON.parse (methodologyChart) as JSON
+		def methodologyChart =[methodologySeries:methodologySeries,methodologyLabels:methodologyLabels]
+		 
+		render methodologyChart as JSON
 		
 	}
 	def generateMethodologyLabels={
@@ -216,25 +182,15 @@ class ReportController {
 			def number = Rae.countByCategory(it)
 			def percentage = (int)((number /Rae.count())*100)
 			
-			
-			
-			def name = it.name.toString().split(" ")
-			
-		   def finalName = ""
-		   
-		   name.each{
-			   def chartArray = it.toCharArray()
-			   if(chartArray.size()>0)
-			   finalName = finalName+chartArray[0]
-		   }
+			def name = it.name.toString()
 		   	
-			universityLabels.add(finalName+"-"+percentage+"%" )
+			universityLabels.add(name+"-"+percentage+"%" )
 			universitySeries.add(number)
 			
 		}
-		def universityChart = _buildChart("Categorias",[universitySeries], universityLabels,Rae.count())
+		def universityChart = [universitySeries:universitySeries,universityLabels:universityLabels]
 		
-		render JSON.parse (universityChart) as JSON
+		render universityChart as JSON
 		
 		
 		
@@ -290,26 +246,18 @@ class ReportController {
 			def number = it[0]
 			def percentage = (int)((number /Tools.count())*100)
 			
-			def name = it[1].split(" ")
+			def name = it[1]
 			
 		   def finalName = ""
 		   
-		   name.each{
-			   def chartArray = it.toCharArray()
-			   if(chartArray.size()>0)
-			   finalName = finalName+chartArray[0]
-		   }
-			
-			
-			
-			keyWordsLabels.add(finalName)
+			keyWordsLabels.add(name)
 			keyWordsSeries.add(it[0])
 		}
 		
 		
-		def keyWordsChart = _buildChart("Herramientas",[keyWordsSeries], keyWordsLabels,Rae.count())
+		def keyWordsChart = [keyWordsSeries:keyWordsSeries,keyWordsLabels:keyWordsLabels]
 		
-		render JSON.parse (keyWordsChart) as JSON
+		render keyWordsChart as JSON
 		
 		
 		
@@ -348,35 +296,44 @@ class ReportController {
 		//if(title.length() >27)
 			//title = wu.wrap(title,27,"\n",false)
 		
+		//"
+		
 		def chart = new Chart(title, "font-size:11px;white-space:normal;")
 		
-
+		
+		int counter=0
 		series.each { serie->
-			def graph = new FilledBarChart()
-			graph.setOutlineColour("#9EC3E6")
+			
+			def graph = new HorizontalBarChart()
+			
+			//graph.setOutlineColour("#9EC3E6")
 			graph.setColour("#00FF00")
 			graph.addValues(serie)
+			
 			chart.addElements(graph)
 		}
 
-		def yAxis = new YAxis()
+		def yAxis  = new YAxis()
 		def xAxis = new XAxis()
 
 
 		yAxis.setGridColour("#C0C0C0")
 		yAxis.setColour("#FFFFFF")
-		yAxis.setMax(top)
+		//yAxis.setMax(top)
 		yAxis.setMin(0)
 		yAxis.setSteps(5)
 		xAxis.setGridColour("#C0C0C0")
 		xAxis.setColour("#C0C0C0")
-		xAxis.setLabels( labels)
-
+		yAxis.setLabels(labels)
+		
 		chart.setYAxis(yAxis)
 		chart.setXAxis(xAxis)
 		chart.setBackgroundColour("#F6F6F6");
 		//chart.computeYAxisRange(1)
 
+		
+		
+		
 		return ofc.render( chart)
 
 	}

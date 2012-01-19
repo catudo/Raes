@@ -54,7 +54,7 @@ grails.exceptionresolver.params.exclude = ['passwd']
 // set per-environment serverURL stem for creating absolute links
 environments {
     production {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://localhost:8080/${appName}"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
@@ -91,8 +91,8 @@ log4j = {
 
 // Added by the Spring Security Core plugin:
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'raes.User'
-grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'raes.UserRole'
 grails.plugins.springsecurity.authority.className = 'raes.Role'
+grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'raes.UserRole'
 grails.plugins.springsecurity.defaultAdminUrl = '/home/admin'
 grails.plugins.springsecurity.defaultUserUrl = '/home/index'
 grails.plugins.springsecurity.userLookup.passwordPropertyName='passwd'

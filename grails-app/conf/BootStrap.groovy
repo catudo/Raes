@@ -8,6 +8,7 @@ import raes.UserRole
 class BootStrap {
 
 	def init = { servletContext ->
+		/*
 		def admin_role = Role.findById(1);
 		(!admin_role) ? admin_role = new Role(authority:'ROLE_ADMIN').save(flush:true) : null;
 		def user_role = Role.findById(2);
@@ -33,7 +34,7 @@ class BootStrap {
 			
 			UserRole.create(testUser,Role.get(1))
 		}
-		
+		*/
 		
 	}
 	def destroy = {

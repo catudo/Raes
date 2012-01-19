@@ -1,120 +1,56 @@
-<g:javascript src="swfobject/swfobject.js" />
+
 <g:javascript src="raes.report.js" />
+
+<g:javascript src="rgraph/RGraph.common.core.js" />
+<g:javascript src="rgraph/RGraph.common.tooltips.js" />
+<g:javascript src="rgraph/RGraph.common.effects.js" />
+<g:javascript src="rgraph/RGraph.hbar.js" />
+
+
 
 
 <ul class="nav main">
-	<li >
-		<a id='university-evt' class="tab" >Universidades</a>
-	</li>
-	<li >
-		<a id='year-evt' class="tab">A&ntilde;o</a>
-	</li>
-	<li >
-		<a id=' methodology-evt' class="tab">Metodologia</a>
-	</li>
-	<li >
-		<a id='keyword-evt' class="tab">Categorias</a>
-	</li>
-	<li >
-		<a id='tools-evt' class="tab">Herramientas</a>
-	</li>
-	
+	<li><a id='university-evt' class="tab">Universidades</a></li>
+	<li><a id='year-evt' class="tab">A&ntilde;o</a></li>
+	<li><a id=' methodology-evt' class="tab">Metodologia</a></li>
+	<li><a id='keyword-evt' class="tab">Categorias</a></li>
+	<li><a id='tools-evt' class="tab">Herramientas</a></li>
+
 </ul>
 
 
-<div id="mainDiv"  style="margin-top:10px "   class="box grid_16 alfa omega">
+<div id="mainDiv" style="margin-top: 10px"
+	class="box grid_16 alfa omega">
 
 
-<div id='universityDiv' >
-<div id='university' class="grid_16" style="margin-top: 10px">
-
-<script type="text/javascript">
-swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
-		"university", "1100", "560", "9.0.0", "expressInstall.swf",
-		{"data-file":'${resource(dir:'',file:'report/generateUniversityChart')}'}
-
-);			
-
-</script>
-</div>
-
-<div id="universitiesLabels">
-
-</div>
-</div>
+	<div id='universityDiv'>
+		<canvas id="universityCanvas" width="1024" height="1024"></canvas>
 
 
-<div id="yearDiv">
-<div id='year' class="grid_4" style="display:none">
+	</div>
 
-<script type="text/javascript">
-swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
-		"year", "1100", "560", "9.0.0", "expressInstall.swf",
-		{"data-file":'${resource(dir:'',file:'report/generateYearsChart')}'}
-);			
 
-</script>
-</div>
+	<div id="yearDiv">
+		<canvas id="yearCanvas" width="1024" height="1024"></canvas>
 
-</div>
-<div id='methodologyDiv'>
-<div id='methodology' class="grid_4" style="display:none">
+	</div>
+	<div id='methodologyDiv'>
 
-<script type="text/javascript">
-swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
-		"methodology", "1100", "560", "9.0.0", "expressInstall.swf",
-		{"data-file":'${resource(dir:'',file:'report/generateMetodologyChart')}'}
-		);			
+		<canvas id="methodologyCanvas" width="1024" height="1024"></canvas>
+	</div>
 
-					
+	<div id='keywordDiv'>
+		<canvas id="keyWordsCanvas" width="1024" height="1024"></canvas>
 
-</script>
-</div>
 
-<div id="methodologyLabels"></div>
+	</div>
 
-</div>
 
-<div id='keywordDiv'>
-<div id='keywords' class="grid_4" style="display:none">
-
-<script type="text/javascript">
-
-swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
-		"keywords", "1100", "560", "9.0.0", "expressInstall.swf",
-		{"data-file":'${resource(dir:'',file:'report/generateKeyWordsChart')}'} );
-
+	<div id='toolsDiv'>
+		<canvas id="toolsCanvas" width="1024" height="1024"></canvas>
 
 	
-
-</script>
-</div>
-
-<div id='categoriesList'>
-
-
-</div>
-
+	</div>
 </div>
 
 
-<div id='toolsDiv'>
-<div id='tools' class="grid_4" style="display:none">
-
-<script type="text/javascript">
-
-swfobject.embedSWF( "${resource(dir:'flash',file:'open-flash-chart.swf')}",
-		"tools", "1100", "560", "9.0.0", "expressInstall.swf",
-		{"data-file":'${resource(dir:'',file:'report/generateToolsChart')}'} );
-					
-
-</script>
-</div>
-
-<div id='labelsTools'>
-</div>
-</div>
-
-
-
-</div>

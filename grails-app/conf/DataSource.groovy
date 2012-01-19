@@ -15,7 +15,7 @@ environments {
     development {
         dataSource {
             dbCreate = "update" // one of 'create', 'create-drop','update'
-			url = "jdbc:mysql://localhost/rae"
+			url = "jdbc:mysql://localhost:3306/rae"
         }
     }
     test {
