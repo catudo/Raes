@@ -10,7 +10,7 @@ import raes.Rae
 import raes.University;
 import raes.User
 
-
+import org.apache.commons.lang.WordUtils as wu
 
 class QueriesController {
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
@@ -153,7 +153,7 @@ or tool.name = 'ooo'
 		
 		if(!(params.keyWords.equals(''))){
 			joinSql=' inner join `rae`.`rae_key_words` as rkw on(rkw.rae_id = rae.id) inner join `rae`.key_word as kw on (kw.id= rkw.key_word_id )'
-			where = where +'''or kw.name="'''+params.keyWords+'''"'''
+			where = where +'''or kw.name like"'''+params.keyWords+'''"'''
 		}
 		
 		if(!(params.authors.equals(''))){
@@ -166,7 +166,10 @@ or tool.name = 'ooo'
 			where = where +''' or tool.name like "%'''+params.tool+'''%"'''
 		}
 		
-		
+		if(!(params.futureWorks.equals(''))){
+			
+			where = where +''' or rae.future_works like "%'''+params.futureWorks+'''%"'''
+		}
 		
 		
 				
@@ -187,7 +190,7 @@ or tool.name = 'ooo'
 	
 	def showAbstract={
 		def rae = Rae.get(params.raeId)	
-		[summary: rae.summary]
+		[summary: rae.summary, url:rae.url]
 		
 	}
 	

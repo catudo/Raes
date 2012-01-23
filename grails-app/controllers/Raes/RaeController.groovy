@@ -106,6 +106,8 @@ class RaeController {
 					topographicalNumber:params.topographicalNumber,
 					city:params.city,
 					name:params.name,
+					url:params.url,
+					futureWorks:params.futureWorks,
 					analyst:params.analyst,
 					university:University.get((params.university?.isNumber())?params.university:0),
 					category:Category.get((params.category?.isNumber())?params.category:0)
@@ -204,10 +206,8 @@ class RaeController {
 			[ "sTitle": "Nombre" ],
 			["sTitle": "Metodologia" ],
 			["sTitle": "A&ntilde;o" ],
-			[ "sTitle": "Resultado" ],
-			[ "sTitle": "Numero Topografico" ],
-			[ "sTitle": "Ciudad"],
-			[ "sTitle": "Analista"],
+			
+		
 			[ "sTitle": "Universidad"],
 			[ "sTitle": "Palabras Claves"],
 			[ "sTitle": "Categoria"],
@@ -232,14 +232,9 @@ class RaeController {
 			row.add("rae-"+rae.id+"-"+rae.year)
 			else
 			row.add('<a  href="#" class="linkFile" link='+folder+'rae-'+rae.id+"-"+rae.year+".docx"+'>'+"rae-"+rae.id+"-"+rae.year +'</a>')	
-			
 			row.add(rae.name)
 			row.add(rae.methodology)
 			row.add(rae.year)
-			row.add(rae.result)
-			row.add(rae.topographicalNumber)
-			row.add(rae.city)
-			row.add(rae.analyst)
 			row.add(rae.university?.name)
 			row.add(rae.keyWords.join(","))
 			row.add(rae.category?.name)
@@ -287,7 +282,7 @@ class RaeController {
 	
 	def showRae={
 		def rae = Rae.get(params.raeId)
-		
+		println params.raeId
 		def properties =[
 			"name",
 			"year",
@@ -296,7 +291,9 @@ class RaeController {
 			"result",
 			"topographicalNumber",
 			"city",
-			"analyst"
+			"analyst",
+			"futureWorks",
+			"url"
 		]
 		
 		
@@ -521,6 +518,51 @@ class RaeController {
 		
 	}
 	
+	
+	def autocompleteTools={
+		def tools=[]
+		
+		
+		if(params.term &&  !params.term.equals('')){
+			
+		def toolsInstance = Tools.createCriteria().list(){
+				like('name',"%"+params.term+"%")
+			}
+		
+		toolsInstance.each{
+		
+			tools.add(it.name)	
+		}
+		
+			
+		}
+		
+		
+		render tools as JSON
+		
+	}
+	
+	def autocompleteKeyWord={
+		def keyWords=[]
+		
+		
+		if(params.term &&  !params.term.equals('')){
+			
+		def keyInstances = KeyWord.createCriteria().list(){
+				like('name',"%"+params.term+"%")
+			}
+		
+		keyInstances.each{
+		
+			keyWords.add(it.name)
+		}
+		
+			
+		}
+		
+		
+		render keyWords as JSON
+	}
 	
 	
 }

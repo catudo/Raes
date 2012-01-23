@@ -12,7 +12,8 @@ class Category {
 	}
 	
     static constraints = {
-    }
+    	name unique:true
+	}
 	
 	
 	String toString(){

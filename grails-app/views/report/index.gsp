@@ -24,30 +24,30 @@
 
 
 	<div id='universityDiv'>
-		<canvas id="universityCanvas" width="1024" height="1024"></canvas>
+		<canvas id="universityCanvas" width="800" height="600"></canvas>
 
 
 	</div>
 
 
 	<div id="yearDiv">
-		<canvas id="yearCanvas" width="1024" height="1024"></canvas>
+		<canvas id="yearCanvas" width="800" height="600"></canvas>
 
 	</div>
 	<div id='methodologyDiv'>
 
-		<canvas id="methodologyCanvas" width="1024" height="1024"></canvas>
+		<canvas id="methodologyCanvas" width="800" height="600"></canvas>
 	</div>
 
 	<div id='keywordDiv'>
-		<canvas id="keyWordsCanvas" width="1024" height="1024"></canvas>
+		<canvas id="keyWordsCanvas" width="800" height="600"></canvas>
 
 
 	</div>
 
 
 	<div id='toolsDiv'>
-		<canvas id="toolsCanvas" width="1024" height="1024"></canvas>
+		<canvas id="toolsCanvas" width="800" height="600"></canvas>
 
 	
 	</div>

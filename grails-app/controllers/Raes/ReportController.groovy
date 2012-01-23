@@ -10,6 +10,7 @@ import jofc2.model.elements.HorizontalBarChart
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.hibernate.Hibernate
 
+import org.apache.commons.lang.WordUtils as wu
 import raes.Category
 import raes.Rae
 import raes.Tools
@@ -52,8 +53,12 @@ class ReportController {
 			def number = Rae.countByUniversity(it)
 			def percentage = (int)((number /Rae.count())*100)
 			
+			def name = it.name+"-"+percentage+"%" 
 			
-			universityLabels.add(it.name+"-"+percentage+"%" )
+			//if(name.length() >20)
+			//name = wu.wrap(name,20,"</p>",false)
+			
+			universityLabels.add(name)
 			universitySeries.add(number)
 			
 		}
@@ -125,7 +130,15 @@ class ReportController {
 				
 				def name = it.methodology.toString()
 				
+				if(name.equals(""))
+				name="Sin Metodologia"
+				
+				
 			   def finalName = ""
+			   
+			   
+			 //  if(name.length() >46)
+			  // name = wu.wrap(name,46,"\n",false)
 			   
 				methodologyLabels.add(name+"-"+percentage+"%")
 				methodologySeries.add(number)
@@ -140,37 +153,7 @@ class ReportController {
 		render methodologyChart as JSON
 		
 	}
-	def generateMethodologyLabels={
-		
-		
-		def methodologies =Rae.createCriteria().list{
-			
-			order('year',"ASC")
-		}
-		
-		
-		def methodologyLabels =[]
-		methodologies.unique{it.methodology}.each{
-			
-			
-			def name = it.methodology.toString().split(" ")
-			
-		   def finalName = ""
-		   
-		   name.each{
-			   def chartArray = it.toCharArray()
-			   if(chartArray.size()>0)
-			   finalName = finalName+chartArray[0]
-		   }
-		   
-		   if(!(it.methodology.toString().equals("")))
-			methodologyLabels.add(finalName+"-"+it.methodology.toString())
-			
-		}
-		
-		[methodologyLabels:methodologyLabels]
 	
-	}
 	
 	def generateKeyWordsChart={
 		
@@ -250,7 +233,10 @@ class ReportController {
 			
 		   def finalName = ""
 		   
-			keyWordsLabels.add(name)
+		   if(name.equals(""))
+		   name="Sin Herramienta"
+		   
+			keyWordsLabels.add(name+"-"+percentage+"%")
 			keyWordsSeries.add(it[0])
 		}
 		
@@ -264,79 +250,12 @@ class ReportController {
 	}
 	
 	
-	def generateToolsNamesChart={
-		
-		def toolsNames = Tools.list()
-		def keyWordsLabels =[] 
-		toolsNames.each {
-			
-			def name = it.name.split(" ")
-			
-		   def finalName = ""
-		   
-		   name.each{
-			   def chartArray = it.toCharArray()
-			   if(chartArray.size()>0)
-			   finalName = finalName+chartArray[0]
-		   }
-			
-			keyWordsLabels.add(finalName+"-"+it.name)
-			
-		}
-		[keyWordsLabels:keyWordsLabels]
-		
-	}
+
 	
 	
 	
 	
-	
-	def _buildChart(def title, def series=[], def labels=[], def top) {
-		def ofc = OFC.getInstance()
-		//if(title.length() >27)
-			//title = wu.wrap(title,27,"\n",false)
-		
-		//"
-		
-		def chart = new Chart(title, "font-size:11px;white-space:normal;")
-		
-		
-		int counter=0
-		series.each { serie->
-			
-			def graph = new HorizontalBarChart()
-			
-			//graph.setOutlineColour("#9EC3E6")
-			graph.setColour("#00FF00")
-			graph.addValues(serie)
-			
-			chart.addElements(graph)
-		}
 
-		def yAxis  = new YAxis()
-		def xAxis = new XAxis()
-
-
-		yAxis.setGridColour("#C0C0C0")
-		yAxis.setColour("#FFFFFF")
-		//yAxis.setMax(top)
-		yAxis.setMin(0)
-		yAxis.setSteps(5)
-		xAxis.setGridColour("#C0C0C0")
-		xAxis.setColour("#C0C0C0")
-		yAxis.setLabels(labels)
-		
-		chart.setYAxis(yAxis)
-		chart.setXAxis(xAxis)
-		chart.setBackgroundColour("#F6F6F6");
-		//chart.computeYAxisRange(1)
-
-		
-		
-		
-		return ofc.render( chart)
-
-	}
 	
 	
 }

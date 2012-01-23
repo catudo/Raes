@@ -28,6 +28,7 @@ $(document).ready(function(){
 			
 	
 	
+
 	
 });
 
@@ -332,7 +333,9 @@ function addAuthorAndKeyWords(){
 	
 	$("#raeFormDiv").delegate(".evt-addKeyWords", "click", function(e) {
 		e.preventDefault()
-		$(this).before('<p><input type="text" value="" id="keyword" name="keyword" class="text raeText"></p>')
+		$(this).before('<p><input type="text" value="" id="keyword" name="keyword" class="text raeText autocompleteKey"></p>')
+			autocompleteKeyWord()
+
 	
 	
 	})
@@ -340,10 +343,52 @@ function addAuthorAndKeyWords(){
 	
 	$("#raeFormDiv").delegate(".evt-addTool", "click", function(e) {
 		e.preventDefault()
-		$(this).before('<p><input type="text" value="" id="tool" name="tool" class="text raeText"></p>')
-	
+		$(this).before('<p><input type="text" value="" id="tool" name="tool" class="text raeText autocompleteTools"></p>')
+					autocompleteTools()
 	
 	})
+	
+}
+function autocompleteTools(){
+	
+	$( ".autocompleteTools" ).autocomplete({
+		source: webroot+"/rae/autocompleteTools",
+		
+		select: function( event, ui ) {
+			event.preventDefault();
+			$(this).val( ui.item.label );
+			
+		},focus: function(event, ui){
+            event.preventDefault();
+            $(this).val(ui.item.label);
+			
+        },
+        
+		minLength: 3
+	});
+	
+	
+}
+
+
+function autocompleteKeyWord(){
+	
+	$( ".autocompleteKey" ).autocomplete({
+		source: webroot+"/rae/autocompleteKeyWord",
+		
+		select: function( event, ui ) {
+			event.preventDefault();
+			$(this).val( ui.item.label );
+			$( ".autocompleteKey" ).val( ui.item.value );
+		},focus: function(event, ui){
+            event.preventDefault();
+            $(this).val(ui.item.label);
+			
+        },
+        
+		minLength: 3
+	});
+	
 	
 }
 
@@ -459,9 +504,9 @@ function showRae(){
 function cancelForm(){
 	$("#raeFormDiv").delegate('#cancelEdition', "click", function(e){
 	e.preventDefault()
-	$('#year').attr('disabled',false)
-	clear('#raeForm')
-	
+	//$('#year').attr('disabled',false)
+	//clear('#raeForm')
+	getForm()
 	});
 	
 }
@@ -486,7 +531,8 @@ function getForm(){
 				}
 				});
 			
-			
+			autocompleteKeyWord()
+			autocompleteTools()
 			
 
 

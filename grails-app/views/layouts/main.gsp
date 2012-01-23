@@ -51,7 +51,7 @@
 						
 					
 					<li>
-							<a href="#" class="linkPath" link="${server}/report/index">Reportes</a>
+							<a href="#" class="linkPath" link="${server}/report/index">Graficas</a>
 						</li>
 					
 						<li class="secondary" >

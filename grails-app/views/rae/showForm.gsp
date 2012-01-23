@@ -42,14 +42,14 @@
 					</p>
 					<p>
 						<label>Palabras Claves</label>
-						<g:textField class="raeText" name="keyword"/>
+						<g:textField class="raeText autocompleteKey" name="keyword"/>
 						<br>
 						</br><a class="button evt-addKeyWords" href="#">Agregar Palabra Clave</a>
 					</p>
 					
 					<p>
 						<label>Herramientas</label>
-						<g:textField class="raeText" name="tool"/>
+						<g:textField class="raeText autocompleteTools" name="tool"/>
 						<br>
 						</br><a class="button evt-addTool" href="#">Agregar Herramienta</a>
 					</p>
@@ -70,11 +70,25 @@
 						<g:textField class="raeText" name="result"/>
 					</p>
 					
+					
+					<p>
+						<label>Direcci&oacute;n</label>
+						<g:textField class="raeText" name="url"/>
+					</p>
+					
 					<p>
 						<label>Resumen</label>
 						<br>
 						<g:textArea name="summary" style="width: 1029px; height: 167px;"></g:textArea>
 					</p>
+					
+					<p>
+						<label>Trabajos Futuros</label>
+						<br>
+						<g:textArea name="futureWorks" style="width: 1029px; height: 167px;"></g:textArea>
+					</p>
+					
+					
 					<p>
 						<label>Año</label>
 							<% def currentYear = new Date().getYear()+1900	

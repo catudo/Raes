@@ -39,6 +39,7 @@ class UserController {
 		 [ "sTitle": "email" ],
 		 [ "sTitle": "Usuario" ],
 		 [ "sTitle": "Estado"],
+		[ "sTitle": "Role"],
 		 [ "sTitle": "" ],
 		 [ "sTitle": "" ],
 		 [ "sTitle": "" ]
@@ -52,7 +53,9 @@ class UserController {
 			row.add(user.lastName)
 			row.add(user.email)
 			row.add(user.username)
+			def userRole = UserRole.findByUser(user)
 			row.add((user.enabled)?"Habilitado":"Desahabilitado")
+			row.add((userRole.role.id==1.toLong())?"Administrador":"Usuario")
 			row.add("<a class='editUser' userId="+user.id+">Editar<a>")
 			row.add("<a class='changeUser' userId="+user.id+">Cambiar Estado<a>")
 			row.add("<a class='deleteUser' userId="+user.id+">Eliminar<a>")
@@ -121,7 +124,10 @@ class UserController {
 			
 			render userInstance as JSON
         }else{
+		
+		
 		render userInstance.errors as JSON
+		
 		}
 		
 		 

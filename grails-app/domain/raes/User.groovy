@@ -15,6 +15,7 @@ class User {
 	boolean passwordExpired
 
 	static constraints = {
+		identification unique: true
 		username blank: false, unique: true
 		passwd blank: false
 	}

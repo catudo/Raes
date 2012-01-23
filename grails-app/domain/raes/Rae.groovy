@@ -10,17 +10,22 @@ class Rae {
 	String  topographicalNumber
 	String city
 	String name
+	String url
+	String futureWorks
 	String analyst
 	static belongsTo =[university:University,category:Category]
 	static hasMany = [authors:Author,keyWords:KeyWord,tools:Tools]
 	//categories:Category
-    static constraints = {
+    
+	
+	static constraints = {
 		authors nullable:true
 		keyWords nullable:true
 		category nullable:true
 		university nullable:true
 		tools nullable:true
-		
+		url nullable:true
+		futureWorks nullable:true
 		
     }
 	

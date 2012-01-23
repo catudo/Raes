@@ -39,8 +39,8 @@ function generateUniversitiesChart(){
 		      grad.addColorStop(1, 'blue');
 
 		      hbar1.Set('chart.strokestyle', 'rgba(0,0,0,0)');
-		      hbar1.Set('chart.gutter.left', 275);
-		      hbar1.Set('chart.gutter.right', 10);
+		      hbar1.Set('chart.gutter.left', 350);
+		      hbar1.Set('chart.gutter.right', 20);
 		      hbar1.Set('chart.background.grid.autofit', true);
 		      hbar1.Set('chart.title', 'Universidades');
 		      hbar1.Set('chart.labels', response.universityLabels);
@@ -124,7 +124,7 @@ function generateMethodologyChart(){
 		      grad.addColorStop(0, 'red');
 		      grad.addColorStop(1, 'blue');
 		      hbar1.Set('chart.strokestyle', 'rgba(0,0,0,0)');
-		      hbar1.Set('chart.gutter.left', 275);
+		      hbar1.Set('chart.gutter.left', 350);
 		      hbar1.Set('chart.gutter.right', 10);
 		      hbar1.Set('chart.background.grid.autofit', true);
 		      hbar1.Set('chart.title', 'Metodologias');
@@ -210,7 +210,7 @@ function generateToolsChart(){
 		      grad.addColorStop(1, 'blue');
 
 		      hbar1.Set('chart.strokestyle', 'rgba(0,0,0,0)');
-		      hbar1.Set('chart.gutter.left', 275);
+		      hbar1.Set('chart.gutter.left', 350);
 		      hbar1.Set('chart.gutter.right', 10);
 		      hbar1.Set('chart.background.grid.autofit', true);
 		      hbar1.Set('chart.title', 'Herramientas');

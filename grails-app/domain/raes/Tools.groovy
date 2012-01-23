@@ -9,4 +9,10 @@ class Tools {
 
     static constraints = {
     }
+	
+	
+	String toString(){
+		return name
+	}
+	
 }

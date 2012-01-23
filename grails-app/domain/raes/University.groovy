@@ -10,6 +10,8 @@ class University {
 	}
 	
     static constraints = {
+		
+		name unique:true
     }
 	
 	

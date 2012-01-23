@@ -57,6 +57,9 @@
 									<g:textField name="tool"/>
 									
 								</p>
+								
+								
+							
 							
 							
 							</div>
@@ -72,10 +75,14 @@
 									<label>Universidad</label>
 									<g:select class="select" name="university" optionKey="id" from="${University.list()}"   noSelection="${['null':'']}"/>
 								</p>
-								
+								<p>
+									<label>Trabajos Futuros</label>
+									<g:textField name="futureWorks"/>
+									
+								</p>
 								
 							
-							<input type="submit" value="Buscar" class="button">
+							<input type="submit" value="Buscar" class="button" style="margin-left:77%;">
 							</div>
 							
 							

@@ -151,7 +151,8 @@ function setUpForm() {
 				url : webroot + "/user/save",
 				data : params,
 				success : function(message) {
-
+				
+				if(message.errors ==null){
 					clear(form)
 					listUsers()
 					$('#passwd').removeClass('editable')
@@ -159,6 +160,20 @@ function setUpForm() {
 					$("#passwd").rules("add", {
 						required : true
 					});
+					
+				}else{
+				
+					$("#"+message.errors[0].field).after('<label class="error-label">' + message.errors[0].message + '</label>');
+					
+					
+					
+					
+					
+				
+				}	
+					
+					
+					
 				}
 			});
 			return false;
