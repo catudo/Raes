@@ -33,136 +33,141 @@
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<detail>
-		<band height="617" splitType="Stretch">
-			<staticText>
-				<reportElement positionType="Float" x="13" y="42" width="141" height="18"/>
-				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Analista]]></text>
-			</staticText>
+		<band height="348" splitType="Stretch">
 			<textField>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Transparent" x="13" y="60" width="480" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement positionType="FixRelativeToBottom" mode="Transparent" x="7" y="89" width="546" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{analyst}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="97" width="480" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="7" y="131" width="546" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="12"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{methodology}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="78" width="141" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="111" width="141" height="20">
+					<printWhenExpression><![CDATA[!($F{methodology}.equals(""))]]></printWhenExpression>
+				</reportElement>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Metodologia]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="138" width="480" height="20"/>
-				<textElement>
-					<font fontName="Arial"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="117" width="141" height="20"/>
-				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Resultado]]></text>
-			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="180" width="480" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="7" y="195" width="546" height="20"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="160" width="141" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="163" width="141" height="20">
+					<printWhenExpression><![CDATA[!($F{category}.equals(""))]]></printWhenExpression>
+				</reportElement>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Categoria]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="264" width="480" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="7" y="275" width="546" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="12"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{university}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="243" width="141" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="7" y="255" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Universidad]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToBandHeight" x="13" y="380" width="529" height="224" isPrintWhenDetailOverflows="true"/>
-				<textElement textAlignment="Justified"/>
-				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="200" width="141" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="215" width="141" height="20">
+					<printWhenExpression><![CDATA[!($F{authors}.equals(""))]]></printWhenExpression>
+				</reportElement>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Autores]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="221" width="480" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="7" y="235" width="546" height="20"/>
 				<textElement>
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{authors}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement style="Title" stretchType="RelativeToTallestObject" mode="Transparent" x="13" y="18" width="435" height="22" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
-			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement positionType="Float" mode="Transparent" x="13" y="313" width="480" height="17" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" mode="Transparent" x="7" y="325" width="546" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="13" y="288" width="141" height="20"/>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="305" width="141" height="20"/>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="0" width="141" height="18"/>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="69" width="141" height="18"/>
 				<textElement>
-					<font fontName="Arial" size="12" isBold="false"/>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Analista]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement style="Title" positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" mode="Transparent" x="7" y="41" width="546" height="18" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="7" y="23" width="141" height="18"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="603" y="18" width="100" height="20"/>
+				<reportElement x="451" y="6" width="85" height="18"/>
 				<textElement/>
 				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="468" y="0" width="85" height="20"/>
-				<textElement/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+		</band>
+		<band height="277">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToBandHeight" x="7" y="86" width="546" height="183" isPrintWhenDetailOverflows="true"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="7" y="14" width="141" height="20">
+					<printWhenExpression><![CDATA[!($F{result}.equals(""))]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false" isItalic="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Resultado]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="7" y="34" width="546" height="38"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{result}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
