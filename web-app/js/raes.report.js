@@ -210,7 +210,7 @@ function generateToolsChart(){
 		      grad.addColorStop(1, 'blue');
 
 		      hbar1.Set('chart.strokestyle', 'rgba(0,0,0,0)');
-		      hbar1.Set('chart.gutter.left', 350);
+		      hbar1.Set('chart.gutter.left',400);
 		      hbar1.Set('chart.gutter.right', 10);
 		      hbar1.Set('chart.background.grid.autofit', true);
 		      hbar1.Set('chart.title', 'Herramientas');

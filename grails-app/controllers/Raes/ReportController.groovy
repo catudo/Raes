@@ -222,7 +222,7 @@ class ReportController {
 		queryProfile.addScalar("counterValue",Hibernate.INTEGER);
 		queryProfile.addScalar("toolName",Hibernate.STRING);
 		
-		def results = queryProfile.list();
+		def results = queryProfile.list().subList(1,50);
 
 		results.each{
 			
